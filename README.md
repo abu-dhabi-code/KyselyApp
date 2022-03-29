@@ -1,2 +1,2 @@
 # KyselyApp
-## Web application for creating and answeing quizzes 
+## Web application for creating and answering quizzes 
