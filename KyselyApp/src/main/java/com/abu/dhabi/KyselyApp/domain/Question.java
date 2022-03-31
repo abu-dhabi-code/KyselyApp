@@ -1,16 +1,25 @@
 package com.abu.dhabi.KyselyApp.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Question {
 
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	private String question;
+	private Long surveyId;
 	
 	// Text is the default question type for now
 	private QuestionType type = QuestionType.Text;
 
-	public Question(int id, String question, QuestionType type) {
+	public Question(Long surveyId, String question, QuestionType type) {
 		super();
-		this.id = id;
+		this.surveyId = surveyId;
 		this.question = question;
 		this.type = type;
 	}
