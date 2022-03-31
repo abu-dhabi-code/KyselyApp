@@ -3,11 +3,26 @@
 <head>
     <title>Add survey</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   	<link rel="stylesheet" href="/assets/index.css">
 </head>
 <body>
 	<h2>Add survey</h2>
-	<form th:object="${newsurvey}" th:action="@{savesurvey}" method="post" action="#">
-			
+	<input type="button" value="Add new question" />
+	<form th:object="${question}" th:action="@{/savesurvey}" method="post" action="#">
+		<input type="hidden" th:field="*{id}" />
+		<input type="hidden" th:field="*{survey}"/>
+		<input 
+			class="border-2 border-black rounded"
+			type="text" 
+			placeholder="Question" 
+			th:value="${question.name}"
+			th:field="*{name}" 
+		/>
+		
+		<input 
+			type="submit"
+			value="Create survey"
+		/>
 	</form>
 </body>
 </html>

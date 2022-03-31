@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Question {
@@ -11,16 +15,24 @@ public class Question {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	private String question;
-	private Long surveyId;
+	private String name;
 	
+	@ManyToOne
+	@JsonIgnoreProperties("questions")
+    @JoinColumn(name = "surveyid")
+	private Survey survey;
+	
+	public Question() {
+		super();
+	}
+
 	// Text is the default question type for now
 	private QuestionType type = QuestionType.Text;
 
-	public Question(Long surveyId, String question, QuestionType type) {
+	public Question(Survey survey, String question, QuestionType type) {
 		super();
-		this.surveyId = surveyId;
-		this.question = question;
+		this.survey = survey;
+		this.name = question;
 		this.type = type;
 	}
 
@@ -34,20 +46,20 @@ public class Question {
 		this.id = id;
 	}
 
-	public String getQuestion() {
-		return question;
+	public String getName() {
+		return name;
 	}
 
-	public void setQuestion(String question) {
-		this.question = question;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Long getSurveyId() {
-		return surveyId;
+	public Survey getSurvey() {
+		return survey;
 	}
 
-	public void setSurveyId(Long surveyId) {
-		this.surveyId = surveyId;
+	public void setSurvey(Survey survey) {
+		this.survey = survey;
 	}
 
 	public QuestionType getType() {
