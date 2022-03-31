@@ -1,4 +1,4 @@
-package com.abu.dhabi.domain;
+package com.abu.dhabi.KyselyApp.domain;
 
 public class Question {
 

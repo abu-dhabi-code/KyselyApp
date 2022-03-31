@@ -1,4 +1,4 @@
-package com.abu.dhabi.domain;
+package com.abu.dhabi.KyselyApp.domain;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,6 +13,7 @@ public class Survey {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private List<Question> questions;
+	// private String surveyName;
 	
 	public Survey() {
 		super();
