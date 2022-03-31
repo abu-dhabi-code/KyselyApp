@@ -23,8 +23,6 @@ public class Survey {
 		return id;
 	}
 
-	
-
 	public void setId(Long id) {
 		this.id = id;
 	}
