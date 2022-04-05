@@ -27,7 +27,7 @@ public class SurveyController {
 	@RequestMapping(value = "/addsurvey", method = RequestMethod.GET)
 	public String addSurvey(final RedirectAttributes redirectAttributes) {
 		//new empty survey
-		var newSurvey = new Survey();
+		var newSurvey = new Survey("Survey name..");
 		surveyRepository.save(newSurvey);
 		redirectAttributes.addFlashAttribute("survey", newSurvey);
     	
