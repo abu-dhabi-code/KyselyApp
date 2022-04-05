@@ -22,6 +22,12 @@
 			th:value="${question.name}"
 			th:field="*{name}" 
 		/>
+		<table>
+			<tr th:each="question : ${survey.questions}">
+				<td th:text="${question.name}"/>
+			</tr>
+		</table>
+
 		<input 
 			type="submit"
 			value="Create survey"

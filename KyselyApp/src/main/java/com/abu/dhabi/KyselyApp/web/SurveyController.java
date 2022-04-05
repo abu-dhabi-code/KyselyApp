@@ -55,9 +55,12 @@ public class SurveyController {
 			newQuestion = questionList.get(0);
 		}
 		model.addAttribute("question", newQuestion);
+		var kysely = surveyRepository.findById(id).orElse(null);
 		System.out.println("UUDEN QUESTIONIN ID: " + newQuestion.getId());
 		System.out.println("SURVEY ID: " + newQuestion.getSurvey().getId());
 		model.addAttribute("survey_id", id);
+		model.addAttribute("survey", kysely);
+		System.out.println("kysymykset: " + survey.getQuestions());
 		redirectAttributes.addFlashAttribute("survey", survey);	// REDIRECTING EDITED SURVEY TO "survey"
 		return "addsurvey";
 	}
