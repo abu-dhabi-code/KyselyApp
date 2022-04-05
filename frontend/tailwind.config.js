@@ -6,7 +6,15 @@ module.exports = {
     "../KyselyApp/src/main/resources/templates/**/*.html"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'dk-byzantium': '#482C3D',
+        'sweet-brown': '#AC3931',
+        'tea-green': '#C4F1BE',
+        'lt-yellow': '#F8FFE5',
+        'teal-blue': '#537D8D',
+      }
+    },
   },
   plugins: [],
 }
