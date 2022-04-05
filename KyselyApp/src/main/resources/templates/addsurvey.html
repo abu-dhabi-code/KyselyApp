@@ -7,6 +7,9 @@
 </head>
 <body>
 	<h2>Add survey</h2>
+	<form th:action="@{/addquestion}" method="post" action="#">
+		<input type="submit" value="Add new question" />
+	</form>
 	<input type="button" value="Add new question" />
 	<form th:object="${question}" th:action="@{/savesurvey}" method="post" action="#">
 		<input type="hidden" th:field="*{id}" />
