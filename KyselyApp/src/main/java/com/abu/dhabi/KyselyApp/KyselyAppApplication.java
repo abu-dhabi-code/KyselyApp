@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.abu.dhabi.KyselyApp.domain.Question;
 import com.abu.dhabi.KyselyApp.domain.QuestionRepository;
+import com.abu.dhabi.KyselyApp.domain.Survey;
+import com.abu.dhabi.KyselyApp.domain.SurveyRepository;
 
 import org.slf4j.Logger;
 
@@ -22,15 +24,20 @@ public class KyselyAppApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner questionDemo(QuestionRepository qrepository) {
+	public CommandLineRunner questionDemo(QuestionRepository qrepository, SurveyRepository srepository) {
 		return (args) -> {
 			log.info("save questions");
 			qrepository.save(new Question());
+			srepository.save(new Survey());
+			
+			log.info("fetch all surveys");
+			for (Survey survey : srepository.findAll()) {
+				log.info(survey.toString());
+			}
 
 			log.info("fetch all questions");
 			for (Question question : qrepository.findAll()) {
 				log.info(question.toString());
-				
 			}
 };
 }
