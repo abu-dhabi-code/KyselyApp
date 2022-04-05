@@ -40,7 +40,8 @@ public class SurveyController {
 		    @ModelAttribute("survey") final Survey survey, 
 		    final RedirectAttributes redirectAttributes,	// ADDING REDIRECT ATTRIBUTES
 		    Model model) {
-
+		
+		System.out.println("Onko NULL (EDIT)" + survey.getId());
 		Long id_long = Long.parseLong(id);
 		System.out.println(id_long);
 		var questionList = survey.getQuestions();
@@ -51,7 +52,7 @@ public class SurveyController {
 			model.addAttribute("question", questionList.get(0));
 		}
 		model.addAttribute("survey_id", id);
-		redirectAttributes.addFlashAttribute("survey", survey);	// 
+		redirectAttributes.addFlashAttribute("survey", survey);	// REDIRECTING EDITED SURVEY TO "survey"
 		return "addsurvey";
 	}
 	
@@ -68,8 +69,12 @@ public class SurveyController {
 	// Adding a question to the survey
 	// Check the survey ID and and to the questionlist in the id
 	@RequestMapping(value="/addquestion", method = RequestMethod.POST)
-	public String addQuestion(@ModelAttribute Survey survey) {
+	public String addQuestion(@ModelAttribute("survey") final Survey survey,
+			final RedirectAttributes redirectAttributes) {
+		System.out.println("Onko NULL (ADD)" + survey.getId());
 		var newQuestion = new Question(survey, "", QuestionType.Text);	// CREATE A NEW QUESTION
+		redirectAttributes.addFlashAttribute("survey", survey);	// REDIRECTING EDITED SURVEY TO "survey"
+		
 		return String.format("redirect:editsurvey/%d", newQuestion.getSurvey().getId());
 	}
 }
