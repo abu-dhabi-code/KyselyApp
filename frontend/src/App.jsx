@@ -1,43 +1,20 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { Route, Routes } from "react-router-dom"
+import Home from "./pages/Home"
+import NotFound from "./pages/NotFound"
+import Survey from "./pages/Survey"
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button class="bg-gray-800" type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div className="flex flex-col items-center">
+      <div className="bg-teal-blue w-full text-center">
+        <h1 className="text-3xl mt-2 mb-2">KyselyApp</h1>
+      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/survey/:id" element={<Survey />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   )
 }
