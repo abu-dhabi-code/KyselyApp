@@ -38,6 +38,7 @@ public class SurveyController {
 	public String editSurvey(
 			@PathVariable String id, 
 		    @ModelAttribute("survey") final Survey survey, 
+		    final RedirectAttributes redirectAttributes,	// ADDING REDIRECT ATTRIBUTES
 		    Model model) {
 
 		Long id_long = Long.parseLong(id);
@@ -50,6 +51,7 @@ public class SurveyController {
 			model.addAttribute("question", questionList.get(0));
 		}
 		model.addAttribute("survey_id", id);
+		redirectAttributes.addFlashAttribute("survey", survey);	// 
 		return "addsurvey";
 	}
 	
@@ -61,5 +63,13 @@ public class SurveyController {
         //srepository.save(survey);
 		questionRepository.save(question);
 		return String.format("redirect:editsurvey/%d", question.getSurvey().getId());
-    } 
+    }
+	
+	// Adding a question to the survey
+	// Check the survey ID and and to the questionlist in the id
+	@RequestMapping(value="/addquestion", method = RequestMethod.POST)
+	public String addQuestion(@ModelAttribute Survey survey) {
+		var newQuestion = new Question(survey, "", QuestionType.Text);	// CREATE A NEW QUESTION
+		return String.format("redirect:editsurvey/%d", newQuestion.getSurvey().getId());
+	}
 }
