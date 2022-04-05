@@ -36,21 +36,26 @@ public class SurveyController {
 	
 	@RequestMapping(value = "/editsurvey/{id}", method = RequestMethod.GET)
 	public String editSurvey(
-			@PathVariable String id, 
+			@PathVariable("id") Long id, 
 		    @ModelAttribute("survey") final Survey survey, 
 		    final RedirectAttributes redirectAttributes,	// ADDING REDIRECT ATTRIBUTES
 		    Model model) {
 		
 		System.out.println("Onko NULL (EDIT)" + survey.getId());
-		Long id_long = Long.parseLong(id);
-		System.out.println(id_long);
+		System.out.println(id);
 		var questionList = survey.getQuestions();
+		Question newQuestion = null;
 		if (questionList == null || questionList.isEmpty()) {
-			var newQuestion = new Question(survey, "", QuestionType.Text);
-			model.addAttribute("question", newQuestion);
+			System.out.println("New question created");
+			newQuestion = new Question(survey, "", QuestionType.Text);
+			questionRepository.save(newQuestion);
 		} else {
-			model.addAttribute("question", questionList.get(0));
+			System.out.println("Get old question");
+			newQuestion = questionList.get(0);
 		}
+		model.addAttribute("question", newQuestion);
+		System.out.println("UUDEN QUESTIONIN ID: " + newQuestion.getId());
+		System.out.println("SURVEY ID: " + newQuestion.getSurvey().getId());
 		model.addAttribute("survey_id", id);
 		redirectAttributes.addFlashAttribute("survey", survey);	// REDIRECTING EDITED SURVEY TO "survey"
 		return "addsurvey";
@@ -70,8 +75,8 @@ public class SurveyController {
 	// Check the survey ID and and to the questionlist in the id
 	@RequestMapping(value="/addquestion", method = RequestMethod.POST)
 	public String addQuestion(@ModelAttribute("survey") final Survey survey,
-			final RedirectAttributes redirectAttributes) {
-		System.out.println("Onko NULL (ADD)" + survey.getId());
+			RedirectAttributes redirectAttributes) {
+		System.out.println("Onko NULL (ADD) " + survey.getId());
 		var newQuestion = new Question(survey, "", QuestionType.Text);	// CREATE A NEW QUESTION
 		redirectAttributes.addFlashAttribute("survey", survey);	// REDIRECTING EDITED SURVEY TO "survey"
 		

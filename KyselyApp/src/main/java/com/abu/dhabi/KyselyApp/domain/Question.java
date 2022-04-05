@@ -15,7 +15,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Question {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@NonNull
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	

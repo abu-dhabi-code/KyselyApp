@@ -10,10 +10,11 @@
 	<form th:action="@{/addquestion}" method="post" action="#">
 		<input type="submit" value="Add new question" />
 	</form>
+	
 	<input type="button" value="Add new question" />
 	<form th:object="${question}" th:action="@{/savesurvey}" method="post" action="#">
-		<input type="hidden" th:field="*{id}" />
-		<input type="hidden" th:field="*{survey}"/>
+		<input id="ID_FIELD" type="hidden" th:field="*{id}" readonly="readonly" />
+		<input type="hidden" th:field="*{survey.id}" readonly="readonly"/>
 		<input 
 			class="border-2 border-black rounded"
 			type="text" 
@@ -27,5 +28,9 @@
 			value="Create survey"
 		/>
 	</form>
+	<script> 
+		console.log(document.getElementById("ID_FIELD"))
+	</script>
 </body>
+
 </html>
