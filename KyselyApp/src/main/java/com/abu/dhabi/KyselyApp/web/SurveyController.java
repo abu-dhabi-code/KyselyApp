@@ -1,5 +1,7 @@
 package com.abu.dhabi.KyselyApp.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,6 @@ import com.abu.dhabi.KyselyApp.domain.QuestionRepository;
 import com.abu.dhabi.KyselyApp.domain.QuestionType;
 import com.abu.dhabi.KyselyApp.domain.Survey;
 import com.abu.dhabi.KyselyApp.domain.SurveyRepository;
-
 
 @Controller
 public class SurveyController {
@@ -81,5 +82,13 @@ public class SurveyController {
 		redirectAttributes.addFlashAttribute("survey", survey);	// REDIRECTING EDITED SURVEY TO "survey"
 		
 		return String.format("redirect:editsurvey/%d", newQuestion.getSurvey().getId());
+	}
+	
+	//survey list where you can choose which survey you want to edit
+	@RequestMapping(value = "/surveylist", method = RequestMethod.GET)
+	public String surveyList(Model model) {
+		List<Survey> surveys = (List<Survey>) surveyRepository.findAll();
+		model.addAttribute("surveys", surveys);
+		return "surveylist";
 	}
 }

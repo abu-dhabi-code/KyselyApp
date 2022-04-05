@@ -74,8 +74,11 @@ public class Question {
 		this.type = type;
 	}
 
-	
-	
+
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", name=" + name + ", survey=" + survey.getSurveyName() + ", type=" + type + "]";
+	}
 	
 	
 }

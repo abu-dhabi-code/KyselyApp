@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Survey list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h3>Surveys</h3>
+	<div th:each = "survey : ${surveys}">
+		<h4 th:text="${survey.surveyName}"></h4>
+		<a th:href="@{/editsurvey/{id}(id=${survey.id})}">Edit</a>
+	</div>
+</body>
+</html>
