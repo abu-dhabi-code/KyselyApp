@@ -42,7 +42,7 @@ public class SurveyController {
 		    final RedirectAttributes redirectAttributes,	// ADDING REDIRECT ATTRIBUTES
 		    Model model) {
 		
-		System.out.println("Onko NULL (EDIT)" + survey.getId());
+		/*System.out.println("Onko NULL (EDIT)" + survey.getId());
 		System.out.println(id);
 		var questionList = survey.getQuestions();
 		Question newQuestion = null;
@@ -54,25 +54,33 @@ public class SurveyController {
 			System.out.println("Get old question");
 			newQuestion = questionList.get(0);
 		}
-		model.addAttribute("question", newQuestion);
+		model.addAttribute("question", newQuestion);*/
 		var kysely = surveyRepository.findById(id).orElse(null);
-		System.out.println("UUDEN QUESTIONIN ID: " + newQuestion.getId());
-		System.out.println("SURVEY ID: " + newQuestion.getSurvey().getId());
+		/*System.out.println("UUDEN QUESTIONIN ID: " + newQuestion.getId());
+		System.out.println("SURVEY ID: " + newQuestion.getSurvey().getId());*/
 		model.addAttribute("survey_id", id);
 		model.addAttribute("survey", kysely);
 		System.out.println("kysymykset: " + survey.getQuestions());
-		redirectAttributes.addFlashAttribute("survey", survey);	// REDIRECTING EDITED SURVEY TO "survey"
+		redirectAttributes.addFlashAttribute("survey", kysely);	// REDIRECTING EDITED SURVEY TO "survey"
 		return "addsurvey";
 	}
 	
 	@RequestMapping(value = "/savesurvey", method = RequestMethod.POST)
-    public String save(@ModelAttribute Question question){
-		System.out.println(question.getName());
-		System.out.println(question.getSurvey().getId());
-		System.out.println(question.getType());
+    public String save(@ModelAttribute Survey survey){
+		System.out.println(survey.getSurveyName());
+		//System.out.println(survey.getSurvey().getId());
+		//System.out.println(survey.getType());
         //srepository.save(survey);
-		questionRepository.save(question);
-		return String.format("redirect:editsurvey/%d", question.getSurvey().getId());
+		surveyRepository.save(survey);
+		
+		for (var question : survey.getQuestions()) {
+			System.out.println(question.getName());
+			System.out.println(question.getId());
+			System.out.println(question.getSurvey().getId());
+			questionRepository.save(question);
+		}
+		
+		return String.format("redirect:editsurvey/%d", survey.getId());
     }
 	
 	// Adding a question to the survey

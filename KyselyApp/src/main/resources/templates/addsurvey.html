@@ -3,7 +3,7 @@
 <head>
     <title>Add survey</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-   	<link rel="stylesheet" href="/assets/index.css">
+   	<!--  <link rel="stylesheet" href="/assets/index.css">-->
 </head>
 <body>
 	<h2>Add survey</h2>
@@ -12,10 +12,22 @@
 	</form>
 	
 	<input type="button" value="Add new question" />
-	<form th:object="${question}" th:action="@{/savesurvey}" method="post" action="#">
+	<form th:object="${survey}" th:action="@{/savesurvey}" method="post" action="#">
 		<input id="ID_FIELD" type="hidden" th:field="*{id}" readonly="readonly" />
-		<input type="hidden" th:field="*{survey.id}" readonly="readonly"/>
-		<input 
+		<input type="hidden" th:field="*{surveyName}" readonly="readonly"/>
+		<div th:each="question, stat : *{questions}">
+			<h1 th:text="${question.name}"></h1>
+			<h2 th:text="${stat.index}"></h2>
+			<input type="hidden" th:field="*{questions[__${stat.index}__].id}" />
+			<input type="hidden" th:field="*{questions[__${stat.index}__].survey.id}" />
+			<input 
+				class="border-2 border-black rounded"
+				type="text"
+				placeholder="Question" 
+				th:field="*{questions[__${stat.index}__].name}" 
+			/>
+		</div>
+		<!--  <input 
 			class="border-2 border-black rounded"
 			type="text"
 			placeholder="Question" 
@@ -26,7 +38,7 @@
 			<tr th:each="question : ${survey.questions}">
 				<td th:text="${question.name}"/>
 			</tr>
-		</table>
+		</table>-->
 
 		<input 
 			type="submit"
