@@ -3,12 +3,15 @@
 <head>
     <title>Survey list</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/assets/index.css">
 </head>
-<body>
-	<h3>Surveys</h3>
-	<div th:each = "survey : ${surveys}">
-		<h4 th:text="${survey.surveyName}"></h4>
-		<a th:href="@{/editsurvey/{id}(id=${survey.id})}">Edit</a>
+<body class="bg-dk-byzantium text-lt-yellow">
+	<div class="flex flex-col items-center">
+		<h1 class="text-2xl my-2">Surveys</h1>
+		<div class="flex flex-row my-2 gap-2" th:each = "survey : ${surveys}">
+			<h2 th:text="${survey.surveyName}"></h2>
+			<a class="btn-primary" th:href="@{/editsurvey/{id}(id=${survey.id})}">Edit</a>
+		</div>
 	</div>
 </body>
 </html>

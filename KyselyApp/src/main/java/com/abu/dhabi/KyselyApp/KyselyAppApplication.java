@@ -35,8 +35,12 @@ public class KyselyAppApplication {
 			
 			Question question1 = new Question(survey1, "Are you a frog?", QuestionType.Text);
 			Question question2 = new Question(survey2, "What's your favorite course in Haaga-Helia?", QuestionType.Text);
+			Question question3 = new Question(survey1, "Are you a dog?", QuestionType.Text);
+			Question question4 = new Question(survey1, "Are you a cat?", QuestionType.Text);
 			qrepository.save(question1);
 			qrepository.save(question2);
+			qrepository.save(question3);
+			qrepository.save(question4);
 			
 			
 			log.info("fetch all surveys");

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit survey</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   	<link rel="stylesheet" href="/assets/index.css">
+</head>
+<body class="bg-dk-byzantium text-lt-yellow">
+	<div class="flex flex-col items-center">
+		<h2 class="text-2xl my-2">Edit survey</h2>
+		<form th:action="@{/addquestion/__${survey_id}__}" method="post" action="#">
+			<input class="btn-primary" type="submit" value="Add new question" />
+		</form>
+		
+		<form 
+			th:object="${survey}" 
+			th:action="@{/savesurvey}" 
+			method="post" 
+			action="#"
+			class="flex flex-col items-center"
+		>
+			<input id="ID_FIELD" type="hidden" th:field="*{id}" readonly="readonly" />
+			<input type="hidden" th:field="*{surveyName}" readonly="readonly"/>
+			<div th:each="question, stat : *{questions}">
+				<h1 th:text="${stat.index + 1}"></h1>
+				<input type="hidden" th:field="*{questions[__${stat.index}__].id}" readonly="readonly" />
+				<input type="hidden" th:field="*{questions[__${stat.index}__].survey.id}" readonly="readonly" />
+				<input 
+					class="bg-white text-black px-2 mx-5 rounded"
+					type="text"
+					placeholder="Question" 
+					th:field="*{questions[__${stat.index}__].name}" 
+				/>
+			</div>
+	
+			<input 
+				class="btn-primary mt-2"
+				type="submit"
+				value="Save survey"
+			/>
+		</form>
+	</div>
+</body>
+
+</html>
