@@ -1,10 +1,18 @@
 
+const API_URL = process.env.NODE_ENV === 'production'
+    ? '/api/'
+    : 'http://localhost:8080/api/'
+
 /**
  * Used for fetching a survey by id.
  * @param {number} id - Survey's id in the database.
  * @returns - Promise to a survey object.
  */
 export async function getSurvey(id) {
+    const data = await (await fetch(`${API_URL}survey/${id}`)).json();
+
+    return data;
+
     // For now returns dummy data instead of fetching the Spring server
 
     const question_count = Math.floor(Math.random() * 10) + 1;
