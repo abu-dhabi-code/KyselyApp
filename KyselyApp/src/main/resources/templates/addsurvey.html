@@ -26,27 +26,12 @@
 				th:field="*{questions[__${stat.index}__].name}" 
 			/>
 		</div>
-		<!--  <input 
-			class="border-2 border-black rounded"
-			type="text"
-			placeholder="Question" 
-			th:value="${question.name}"
-			th:field="*{name}" 
-		/>
-		<table>
-			<tr th:each="question : ${survey.questions}">
-				<td th:text="${question.name}"/>
-			</tr>
-		</table>-->
 
 		<input 
 			type="submit"
 			value="Create survey"
 		/>
 	</form>
-	<script> 
-		console.log(document.getElementById("ID_FIELD"))
-	</script>
 </body>
 
 </html>
