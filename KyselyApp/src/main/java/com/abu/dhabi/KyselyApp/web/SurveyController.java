@@ -61,7 +61,7 @@ public class SurveyController {
 		model.addAttribute("survey_id", id);
 		model.addAttribute("survey", kysely);
 		System.out.println("kysymykset: " + survey.getQuestions());
-		redirectAttributes.addFlashAttribute("survey", kysely);	// REDIRECTING EDITED SURVEY TO "survey"
+		//redirectAttributes.addFlashAttribute("survey_id", id);	// REDIRECTING EDITED SURVEY TO "survey"
 		return "addsurvey";
 	}
 	
@@ -73,26 +73,22 @@ public class SurveyController {
         //srepository.save(survey);
 		surveyRepository.save(survey);
 		
-		for (var question : survey.getQuestions()) {
-			System.out.println(question.getName());
-			System.out.println(question.getId());
-			System.out.println(question.getSurvey().getId());
+		for (var question : survey.getQuestions())
 			questionRepository.save(question);
-		}
 		
 		return String.format("redirect:editsurvey/%d", survey.getId());
     }
 	
 	// Adding a question to the survey
 	// Check the survey ID and and to the questionlist in the id
-	@RequestMapping(value="/addquestion", method = RequestMethod.POST)
-	public String addQuestion(@ModelAttribute("survey") final Survey survey,
-			RedirectAttributes redirectAttributes) {
-		System.out.println("Onko NULL (ADD) " + survey.getId());
-		var newQuestion = new Question(survey, "", QuestionType.Text);	// CREATE A NEW QUESTION
-		redirectAttributes.addFlashAttribute("survey", survey);	// REDIRECTING EDITED SURVEY TO "survey"
+	@RequestMapping(value="/addquestion/{id}", method = RequestMethod.POST)
+	public String addQuestion(@PathVariable("id") Long id) {
+		var survey = surveyRepository.findById(id).get();
 		
-		return String.format("redirect:editsurvey/%d", newQuestion.getSurvey().getId());
+		var newQuestion = new Question(survey, "", QuestionType.Text);	// CREATE A NEW QUESTION
+		questionRepository.save(newQuestion);
+		
+		return String.format("redirect:/editsurvey/%d", survey.getId());
 	}
 	
 	//survey list where you can choose which survey you want to edit

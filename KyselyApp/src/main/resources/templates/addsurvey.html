@@ -7,19 +7,18 @@
 </head>
 <body>
 	<h2>Add survey</h2>
-	<form th:action="@{/addquestion}" method="post" action="#">
+	<form th:action="@{/addquestion/__${survey_id}__}" method="post" action="#">
 		<input type="submit" value="Add new question" />
 	</form>
 	
-	<input type="button" value="Add new question" />
 	<form th:object="${survey}" th:action="@{/savesurvey}" method="post" action="#">
 		<input id="ID_FIELD" type="hidden" th:field="*{id}" readonly="readonly" />
 		<input type="hidden" th:field="*{surveyName}" readonly="readonly"/>
 		<div th:each="question, stat : *{questions}">
 			<h1 th:text="${question.name}"></h1>
 			<h2 th:text="${stat.index}"></h2>
-			<input type="hidden" th:field="*{questions[__${stat.index}__].id}" />
-			<input type="hidden" th:field="*{questions[__${stat.index}__].survey.id}" />
+			<input type="hidden" th:field="*{questions[__${stat.index}__].id}" readonly="readonly" />
+			<input type="hidden" th:field="*{questions[__${stat.index}__].survey.id}" readonly="readonly" />
 			<input 
 				class="border-2 border-black rounded"
 				type="text"
