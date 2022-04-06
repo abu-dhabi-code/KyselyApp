@@ -22,7 +22,6 @@ COPY KyselyApp/src src
 
 RUN mkdir -p src/main/resources/static
 
-
 COPY --from=react-build usr/kyselyapp/dist/index.html src/main/resources/static/index.html
 COPY --from=react-build usr/kyselyapp/dist/assets src/main/resources/static/assets
 
@@ -37,5 +36,7 @@ COPY --from=java-build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=java-build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=java-build ${DEPENDENCY}/BOOT-INF/classes /app
 
+
 ENTRYPOINT "java -cp app:app/lib/* com.abu.dhabi.KyselyApp.KyselyAppApplication --server.port=$PORT"
+
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
