@@ -23,7 +23,8 @@ COPY KyselyApp/src src
 RUN mkdir -p src/main/resources/static
 
 
-COPY --from=react-build usr/kyselyapp/dist/**/* src/main/resources/static/
+COPY --from=react-build usr/kyselyapp/dist/index.html src/main/resources/static/index.html
+COPY --from=react-build usr/kyselyapp/dist/assets src/main/resources/static/assets
 
 RUN chmod +x mvnw
 
