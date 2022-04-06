@@ -25,7 +25,7 @@ public class SurveyController {
 
 	@RequestMapping(value = "/addsurvey", method = RequestMethod.GET)
 	public String addSurvey() {
-		// New empty survey
+		// Create and empty survey and save it to the repository
 		var newSurvey = new Survey("Survey name..");
 		surveyRepository.save(newSurvey);
     	
@@ -34,20 +34,27 @@ public class SurveyController {
 	
 	@RequestMapping(value = "/editsurvey/{id}", method = RequestMethod.GET)
 	public String editSurvey(@PathVariable("id") Long id, Model model) {
+		// Get the survey from corresponding to id from surveyRepository
+		// Will throw an exception and crash if one doesn't exist with that id
 		var survey = surveyRepository.findById(id).get();
 		
+
 		model.addAttribute("survey_id", id);
 		model.addAttribute("survey", survey);
 		
 		System.out.println("kysymykset: " + survey.getQuestions());
-		return "addsurvey";
+		return "editsurvey";
 	}
 	
 	@RequestMapping(value = "/savesurvey", method = RequestMethod.POST)
     public String save(@ModelAttribute Survey survey){
 		System.out.println(survey.getSurveyName());
+		// Save the survey to the repository just in case
 		surveyRepository.save(survey);
+
 		
+		// Loop through all of the questions
+		// and save them to the repository
 		for (var question : survey.getQuestions())
 			questionRepository.save(question);
 		
@@ -58,11 +65,18 @@ public class SurveyController {
 	// Check the survey ID and and to the questionlist in the id
 	@RequestMapping(value="/addquestion/{id}", method = RequestMethod.POST)
 	public String addQuestion(@PathVariable("id") Long id) {
+		// Get the survey from corresponding to id from surveyRepository
+		// Will throw an exception and crash if one doesn't exist with that id
+		// FIXME: Should find a better way to do this
+		// FIXME: Possibly passing the survey id in the model(?)
 		var survey = surveyRepository.findById(id).get();
 		
-		var newQuestion = new Question(survey, "", QuestionType.Text);	// CREATE A NEW QUESTION
+		// Create new question for the survey and save it
+		var newQuestion = new Question(survey, "", QuestionType.Text);
 		questionRepository.save(newQuestion);
 		
+		// Redirect the user back to the survey's edit page
+		// The new empty question should appear on there now
 		return String.format("redirect:/editsurvey/%d", survey.getId());
 	}
 	

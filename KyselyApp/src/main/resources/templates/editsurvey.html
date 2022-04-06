@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add survey</title>
+    <title>Edit survey</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
    	<!--  <link rel="stylesheet" href="/assets/index.css">-->
 </head>
 <body>
-	<h2>Add survey</h2>
+	<h2>Edit survey</h2>
 	<form th:action="@{/addquestion/__${survey_id}__}" method="post" action="#">
 		<input type="submit" value="Add new question" />
 	</form>
@@ -29,7 +29,7 @@
 
 		<input 
 			type="submit"
-			value="Create survey"
+			value="Save survey"
 		/>
 	</form>
 </body>
