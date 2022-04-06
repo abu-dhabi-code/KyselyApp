@@ -48,6 +48,6 @@ public class KyselyAppApplication {
 			for (Question question : qrepository.findAll()) {
 				log.info(question.toString());
 			}
-};
-}
+		};
+	}
 }
