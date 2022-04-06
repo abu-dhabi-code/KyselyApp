@@ -19,7 +19,7 @@ function Question({question, key}) {
                     {question.name}
                 </h1>
             </div>
-            <div className="bg-dk-byzantium brightness-95 rounded-b pb-2">
+            <div className="bg-dk-byzantium text-center brightness-95 rounded-b w-full pb-2">
                 <input 
                     type="text" 
                     placeholder="Answer"

@@ -17,6 +17,7 @@ import com.abu.dhabi.KyselyApp.domain.SurveyRepository;
 
 
 @Controller
+@RequestMapping("/api")
 public class RestController {
 	
 	@Autowired

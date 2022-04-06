@@ -20,10 +20,11 @@ function Survey() {
             <div className="mt-2">
                 { survey &&
                     (survey.questions.map(question => (
+                      <span key={question.id} >
                         <Question 
                             question={question} 
-                            key={question.id} 
                         />
+                      </span>
                     )))
                 }
             </div>
