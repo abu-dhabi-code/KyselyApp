@@ -34,3 +34,8 @@ export async function getSurvey(id) {
     });
 
 }
+
+export async function getSurveys() {
+  const data = await (await fetch(`${API_URL}surveys`)).json();
+  return data;
+}
