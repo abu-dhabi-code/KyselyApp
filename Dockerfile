@@ -22,7 +22,7 @@ COPY KyselyApp/src src
 
 RUN mkdir -p src/main/resources/static
 
-RUN echo "server.port=80" >> src/main/resources/application.properties
+RUN echo "server.port=0" >> src/main/resources/application.properties
 
 COPY --from=react-build usr/kyselyapp/dist/**/* src/main/resources/static/
 
@@ -37,6 +37,5 @@ COPY --from=java-build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=java-build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=java-build ${DEPENDENCY}/BOOT-INF/classes /app
 
-EXPOSE 80
 ENTRYPOINT ["java","-cp","app:app/lib/*","com.abu.dhabi.KyselyApp.KyselyAppApplication"]
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
