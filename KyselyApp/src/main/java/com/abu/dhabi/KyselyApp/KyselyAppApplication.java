@@ -34,14 +34,19 @@ public class KyselyAppApplication {
 			srepository.save(survey2);
 			
 			Question question1 = new Question(survey1, "Are you a frog?", QuestionType.Text);
-			Question question2 = new Question(survey2, "What's your favorite course in Haaga-Helia?", QuestionType.Text);
 			Question question3 = new Question(survey1, "Are you a dog?", QuestionType.Text);
 			Question question4 = new Question(survey1, "Are you a cat?", QuestionType.Text);
+			
+			Question question2 = new Question(survey2, "What's your favorite course in Haaga-Helia?", QuestionType.Text);
+			Question question5 = new Question(survey2, "...", QuestionType.Text);
+			Question question6 = new Question(survey2, "...", QuestionType.Text);
+			
 			qrepository.save(question1);
 			qrepository.save(question2);
 			qrepository.save(question3);
 			qrepository.save(question4);
-			
+			qrepository.save(question5);
+			qrepository.save(question6);
 			
 			log.info("fetch all surveys");
 			for (Survey survey : srepository.findAll()) {
