@@ -55,9 +55,10 @@ public class SurveyController {
 		
 		// Loop through all of the questions
 		// and save them to the repository
-		for (var question : survey.getQuestions())
-			questionRepository.save(question);
-		
+		if (survey.getQuestions() != null ) {
+			for (var question : survey.getQuestions())
+				questionRepository.save(question);
+		}
 		return String.format("redirect:editsurvey/%d", survey.getId());
     }
 	
