@@ -24,12 +24,13 @@ public class SurveyController {
 	private QuestionRepository questionRepository;
 
 	@RequestMapping(value = "/addsurvey", method = RequestMethod.GET)
-	public String addSurvey() {
-		// Create and empty survey and save it to the repository
-		var newSurvey = new Survey("Survey name..");
-		surveyRepository.save(newSurvey);
+	public String addSurvey(Model model) {
+		// Create and empty survey
+		var survey = new Survey();
+		model.addAttribute("survey", survey);
     	
-		return String.format("redirect:editsurvey/%d", newSurvey.getId());
+		// Here we'll only ask for the name
+		return "addsurvey";
 	}
 	
 	@RequestMapping(value = "/editsurvey/{id}", method = RequestMethod.GET)
@@ -52,7 +53,6 @@ public class SurveyController {
 		// Save the survey to the repository just in case
 		surveyRepository.save(survey);
 
-		
 		// Loop through all of the questions
 		// and save them to the repository
 		if (survey.getQuestions() != null ) {

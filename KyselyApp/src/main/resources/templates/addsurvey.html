@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add survey</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   	<link rel="stylesheet" href="/assets/index.css">
+</head>
+<body class="bg-dk-byzantium text-lt-yellow">
+	<div class="flex flex-col items-center">
+		<h2 class="text-2xl my-2">Add new survey</h2>
+		
+		<form 
+			th:object="${survey}" 
+			th:action="@{/savesurvey}" 
+			method="post" 
+			action="#"
+			class="flex flex-col items-center"
+		>
+			<input id="ID_FIELD" type="hidden" th:field="*{id}" />
+			<input
+				th:field="*{surveyName}"
+				class="bg-white text-black px-2 mx-5 rounded"
+				type="text"
+				placeholder="Survey name" 
+			/>
+	
+			<input 
+				class="btn-primary mt-2"
+				type="submit"
+				value="Add survey"
+			/>
+		</form>
+	</div>
+</body>
+
+</html>
