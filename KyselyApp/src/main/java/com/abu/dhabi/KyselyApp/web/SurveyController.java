@@ -51,27 +51,26 @@ public class SurveyController {
     public String save(@ModelAttribute Survey survey){
 		System.out.println(survey.getSurveyName());
 		// Save the survey to the repository just in case
-		surveyRepository.save(survey);
+		var savedSurvey = surveyRepository.save(survey);
 
 		// Loop through all of the questions
 		// and save them to the repository
 		if (survey.getQuestions() != null ) {
 			for (var question : survey.getQuestions())
 				questionRepository.save(question);
+		} else {
+			var newQuestion = new Question(savedSurvey, "", QuestionType.Text);
+			questionRepository.save(newQuestion);
 		}
-		return String.format("redirect:editsurvey/%d", survey.getId());
+		
+		return String.format("redirect:editsurvey/%d", savedSurvey.getId());
     }
 	
 	// Adding a question to the survey
 	// Check the survey ID and and to the questionlist in the id
-	@RequestMapping(value="/addquestion/{id}", method = RequestMethod.POST)
-	public String addQuestion(@PathVariable("id") Long id) {
-		// Get the survey from corresponding to id from surveyRepository
-		// Will throw an exception and crash if one doesn't exist with that id
-		// FIXME: Should find a better way to do this
-		// FIXME: Possibly passing the survey id in the model(?)
-		var survey = surveyRepository.findById(id).get();
-		
+	@RequestMapping(value="/addquestion", method = RequestMethod.POST)
+	public String addQuestion(@ModelAttribute Survey survey) {
+		// We'll take the survey object from the form
 		// Create new question for the survey and save it
 		var newQuestion = new Question(survey, "", QuestionType.Text);
 		questionRepository.save(newQuestion);
