@@ -8,6 +8,7 @@
 <body class="bg-dk-byzantium text-lt-yellow">
 	<div class="flex flex-col items-center">
 		<h1 class="text-2xl my-2">Edit survey</h1>
+		<h1 class="text-xl mb-3" th:text="${survey.surveyName}"></h1>
 		<form
 			th:object="${survey}" 
 			th:action="@{/addquestion}"
@@ -33,7 +34,7 @@
 				<input type="hidden" th:field="*{questions[__${stat.index}__].id}" readonly="readonly" />
 				<input type="hidden" th:field="*{questions[__${stat.index}__].survey.id}" readonly="readonly" />
 				<input 
-					class="bg-white text-black px-2 mx-5 rounded textbox-width"
+					class="bg-white text-black px-2 py-1 mx-5 rounded textbox-width"
 					type="text"
 					placeholder="Question" 
 					th:field="*{questions[__${stat.index}__].name}" 
