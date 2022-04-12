@@ -30,25 +30,33 @@ public class KyselyAppApplication {
 	public CommandLineRunner questionDemo(QuestionRepository qrepository, SurveyRepository srepository, AnswerRepository arepository) {
 		return (args) -> {
 			log.info("save surveys");
-			Survey survey1 = new Survey("First survey", "Survey about animals");
-			Survey survey2 = new Survey("Second survey", "Survey about your experience in Haaga-Helia");
+
+			Survey survey1 = new Survey("Asiakastyytyväisyys kysely");
+			// Survey survey2 = new Survey("Second survey");
+
 			srepository.save(survey1);
-			srepository.save(survey2);
+			// srepository.save(survey2);
 			
-			Question question1 = new Question(survey1, "Are you a frog?", QuestionType.Text);
-			Question question3 = new Question(survey1, "Are you a dog?", QuestionType.Text);
-			Question question4 = new Question(survey1, "Are you a cat?", QuestionType.Text);
-					
-			Question question2 = new Question(survey2, "What's your favorite course in Haaga-Helia?", QuestionType.Text);
+			Question question1 = new Question(survey1, "Kuinka usein vierailet ravintola Pääraiteessa?", QuestionType.Text);
+			Question question2 = new Question(survey1, "Kuinka usein nautit aamiaisen ravintola Pääraiteessa?", QuestionType.Text);
+			Question question3 = new Question(survey1, "Kuinka usein ostat lounaan yhteydessä myös jälkiruoan?", QuestionType.Text);
+			Question question4 = new Question(survey1, "Miten tyytyväinen olet ravintolan aamiaiseen?", QuestionType.Text);
+			Question question5 = new Question(survey1, "Miten tyytyväinen olet ravintolan lounaaseen?", QuestionType.Text);
+			Question question6 = new Question(survey1, "Millaisia ruokia kaipaat lounasvalikoimaan?", QuestionType.Text);
+			Question question7 = new Question(survey1, "Miten hyvin ravintolassa on huomioitu eri ruokavaliot ja allergiat?", QuestionType.Text);
+			// Question question8 = new Question(survey1, "Kuinka usein ostat lounaan yhteydessä myös jälkiruoan?", QuestionType.Text);
+			/*
+			Question question4 = new Question(survey2, "What's your favorite course in Haaga-Helia?", QuestionType.Text);
 			Question question5 = new Question(survey2, "...", QuestionType.Text);
 			Question question6 = new Question(survey2, "...", QuestionType.Text);
+			*/
 			
 			Answer answer1 = new Answer(question1, "Yes");
 			Answer answer2 = new Answer(question1, "No");
 			Answer answer3 = new Answer(question1, "Maybe");
 			
 			Answer answer4 = new Answer(question3, "Woof");
-			Answer answer5 = new Answer(question4, "Meow");
+			Answer answer5 = new Answer(question2, "Meow");
 			Answer answer6 = new Answer(question2, "Ohjelmistoprojekti 1 of course :)");
 			
 			qrepository.save(question1);
@@ -57,6 +65,8 @@ public class KyselyAppApplication {
 			qrepository.save(question4);
 			qrepository.save(question5);
 			qrepository.save(question6);
+			qrepository.save(question7);
+			
 			
 			arepository.save(answer1);
 			arepository.save(answer2);
