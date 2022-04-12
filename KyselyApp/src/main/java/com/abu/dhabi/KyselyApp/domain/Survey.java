@@ -17,6 +17,7 @@ public class Survey {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String surveyName;
+	private String description;
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "survey")
@@ -28,9 +29,10 @@ public class Survey {
 		super();
 	}
 	
-	public Survey(String surveyName) {
+	public Survey(String surveyName, String description) {
 		super();
 		this.surveyName = surveyName;
+		this.description = description;
 	}
 
 	//getters and setters
@@ -49,6 +51,14 @@ public class Survey {
 	public void setSurveyName(String surveyName) {
 		this.surveyName = surveyName;
 	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public List<Question> getQuestions() {
 		return this.questions;
@@ -60,7 +70,7 @@ public class Survey {
 
 	@Override
 	public String toString() {
-		return "Survey [id=" + id + ", surveyName=" + surveyName + "]";
+		return "Survey [id=" + id + ", surveyName=" + surveyName + ", description=" + description + "]";
 	}
 	
 	
