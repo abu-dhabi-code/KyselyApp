@@ -18,7 +18,7 @@ function Home() {
               { surveys &&
                 (surveys.map(s => (
                   <div className="flex gap-4 justify-start w-full">
-                  <Link title="click here" key={s.id} className="btn-primary min-w-full text-center" to={`/survey/${s.id}`}>
+                  <Link title={s.description} key={s.id} className="btn-primary min-w-full text-center" to={`/survey/${s.id}`}>
                   To survey #{s.id} - {s.surveyName}
                   </Link>
                   <a className="btn-secondary ml-auto mr-0" href={`/editsurvey/${s.id}`}>Edit</a>

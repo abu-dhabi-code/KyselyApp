@@ -29,15 +29,15 @@ public class Survey {
 		super();
 	}
 	
+	public Survey(String surveyName) {
+		super();
+		this.surveyName = surveyName;
+	}
+	
 	public Survey(String surveyName, String description) {
 		super();
 		this.surveyName = surveyName;
 		this.description = description;
-	}
-	
-	public Survey(String surveyName) {
-		super();
-		this.surveyName = surveyName;
 	}
 
 	//getters and setters

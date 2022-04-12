@@ -31,8 +31,8 @@ public class KyselyAppApplication {
 		return (args) -> {
 			log.info("save surveys");
 
-			Survey survey1 = new Survey("Asiakastyytyväisyys kysely");
-			Survey survey2 = new Survey("Who are you?");
+			Survey survey1 = new Survey("Asiakastyytyväisyyskysely", "Kerro mielipiteesi!");
+			Survey survey2 = new Survey("Who are you?", "We'll find out with some simple questions.");
 
 			srepository.save(survey1);
 			srepository.save(survey2);
