@@ -1,11 +1,15 @@
 package com.abu.dhabi.KyselyApp.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.lang.NonNull;
 
@@ -25,6 +29,10 @@ public class Question {
     @JoinColumn(name = "surveyid")
 	@NonNull
 	private Survey survey;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+	@JsonIgnoreProperties("question")
+	private List<Answer> answers;
 	
 	public Question() {
 		super();
@@ -72,6 +80,14 @@ public class Question {
 
 	public void setType(QuestionType type) {
 		this.type = type;
+	}
+	
+	public List<Answer> getAnswers() {
+		return this.answers;
+	}
+	
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
 	}
 
 
