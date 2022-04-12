@@ -30,8 +30,10 @@ public class KyselyAppApplication {
 	public CommandLineRunner questionDemo(QuestionRepository qrepository, SurveyRepository srepository, AnswerRepository arepository) {
 		return (args) -> {
 			log.info("save surveys");
+
 			Survey survey1 = new Survey("Asiakastyytyväisyys kysely");
 			// Survey survey2 = new Survey("Second survey");
+
 			srepository.save(survey1);
 			// srepository.save(survey2);
 			

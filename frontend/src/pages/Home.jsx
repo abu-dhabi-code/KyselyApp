@@ -14,12 +14,15 @@ function Home() {
     return (
         <div className="flex flex-col items-center h-full">
             <h1 className="text-3xl mt-3 mb-6">Home</h1>
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-stretch gap-4 justify-evenly">
               { surveys &&
                 (surveys.map(s => (
-                  <Link key={s.id} className="btn-primary" to={`/survey/${s.id}`}>
+                  <div className="flex gap-4 justify-start w-full">
+                  <Link key={s.id} className="btn-primary min-w-full text-center" to={`/survey/${s.id}`}>
                   To survey #{s.id} - {s.surveyName}
                   </Link>
+                  <a className="btn-secondary ml-auto mr-0" href={`/editsurvey/${s.id}`}>Edit</a>
+                  </div>
                 )))
               }
             </div>
