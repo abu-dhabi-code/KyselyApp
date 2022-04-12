@@ -16,16 +16,22 @@ function Survey() {
 
     return (
         <div className="flex flex-col items-center h-full">
-            <h1 className="text-2xl mt-2">Survey #{id}</h1>
+            <h1 className="text-2xl my-2">{survey?.surveyName}</h1>
+            <p>{survey?.description}</p>
             <div className="mt-2">
-                { survey &&
+                { survey 
+                    ?
                     (survey.questions.map(question => (
                       <span key={question.id} >
                         <Question 
                             question={question} 
                         />
                       </span>
-                    )))
+                    ))) 
+                    : 
+                    (
+                        <h1>Loading</h1>
+                    )
                 }
             </div>
             <Link className="btn-primary mt-auto mb-4" to="/">Go back home</Link>
