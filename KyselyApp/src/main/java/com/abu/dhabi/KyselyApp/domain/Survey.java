@@ -34,6 +34,11 @@ public class Survey {
 		this.surveyName = surveyName;
 		this.description = description;
 	}
+	
+	public Survey(String surveyName) {
+		super();
+		this.surveyName = surveyName;
+	}
 
 	//getters and setters
 	public Long getId() {
