@@ -7,7 +7,7 @@
 </head>
 <body class="bg-dk-byzantium text-lt-yellow">
 	<div class="flex flex-col items-center">
-		<h2 class="text-2xl my-2">Edit survey</h2>
+		<h1 class="text-2xl my-2">Edit survey</h1>
 		<form
 			th:object="${survey}" 
 			th:action="@{/addquestion}"
@@ -29,7 +29,7 @@
 			<input type="hidden" th:field="*{id}" readonly="readonly" />
 			<input type="hidden" th:field="*{surveyName}" readonly="readonly"/>
 			<div th:each="question, stat : *{questions}">
-				<h1 th:text="${stat.index + 1}"></h1>
+				<h2 th:text="${stat.index + 1}"></h2>
 				<input type="hidden" th:field="*{questions[__${stat.index}__].id}" readonly="readonly" />
 				<input type="hidden" th:field="*{questions[__${stat.index}__].survey.id}" readonly="readonly" />
 				<input 

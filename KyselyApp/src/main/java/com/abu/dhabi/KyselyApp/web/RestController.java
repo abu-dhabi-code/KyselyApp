@@ -33,6 +33,7 @@ public class RestController {
     }    
 
 	// RESTful service to get Survey by id
+	//pitäiskö enpointia muuttaa?
 	@CrossOrigin
     @RequestMapping(value="/survey/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Survey> findSurveyRest(@PathVariable("id") Long SurveyId) {	
