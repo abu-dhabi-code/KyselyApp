@@ -12,4 +12,7 @@
     active:shadow-lg
     transition-all
   }
+  .textbox-width {
+    @apply w-[38rem]
+  }
 }

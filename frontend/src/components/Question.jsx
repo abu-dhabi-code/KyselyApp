@@ -1,16 +1,16 @@
 
 
-function Question({question, key}) {
+function Question({ question, key }) {
 
     return (
-        <div 
-            key={key} 
+        <div
+            key={key}
             className="bg-sweet-brown 
                 m-3
                 px-1 py-1 rounded shadow-sm
                 flex flex-col items-center"
         >
-            <div 
+            <div
                 className="w-full px-5 py-3 
                 mt-0 mx-0 bg-dk-byzantium
                 rounded-t"
@@ -20,10 +20,10 @@ function Question({question, key}) {
                 </h1>
             </div>
             <div className="bg-dk-byzantium text-center brightness-95 rounded-b w-full pb-2">
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     placeholder="Answer"
-                    className="bg-white text-black px-2 mx-5 rounded"
+                    className="bg-white text-black px-2 mx-5 rounded textbox-width"
                 />
             </div>
         </div>
