@@ -64,6 +64,7 @@ public class SurveyController {
 		}
 		
 		return String.format("redirect:editsurvey/%d", savedSurvey.getId());
+
     }
 	
 	// Adding a question to the survey
