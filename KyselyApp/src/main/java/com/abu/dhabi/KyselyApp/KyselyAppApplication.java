@@ -32,10 +32,10 @@ public class KyselyAppApplication {
 			log.info("save surveys");
 
 			Survey survey1 = new Survey("Asiakastyytyväisyys kysely");
-			// Survey survey2 = new Survey("Second survey");
+			Survey survey2 = new Survey("Who are you?");
 
 			srepository.save(survey1);
-			// srepository.save(survey2);
+			srepository.save(survey2);
 			
 			Question question1 = new Question(survey1, "Kuinka usein vierailet ravintola Pääraiteessa?", QuestionType.Text);
 			Question question2 = new Question(survey1, "Kuinka usein nautit aamiaisen ravintola Pääraiteessa?", QuestionType.Text);
@@ -45,19 +45,18 @@ public class KyselyAppApplication {
 			Question question6 = new Question(survey1, "Millaisia ruokia kaipaat lounasvalikoimaan?", QuestionType.Text);
 			Question question7 = new Question(survey1, "Miten hyvin ravintolassa on huomioitu eri ruokavaliot ja allergiat?", QuestionType.Text);
 			// Question question8 = new Question(survey1, "Kuinka usein ostat lounaan yhteydessä myös jälkiruoan?", QuestionType.Text);
-			/*
-			Question question4 = new Question(survey2, "What's your favorite course in Haaga-Helia?", QuestionType.Text);
-			Question question5 = new Question(survey2, "...", QuestionType.Text);
-			Question question6 = new Question(survey2, "...", QuestionType.Text);
-			*/
+			
+			Question animalQ1 = new Question(survey2, "Are you a frog?", QuestionType.Text);
+			Question animalQ2 = new Question(survey2, "Are you a dog?", QuestionType.Text);
+			Question animalQ3 = new Question(survey2, "Are you a cat?", QuestionType.Text);
 			
 			Answer answer1 = new Answer(question1, "Yes");
 			Answer answer2 = new Answer(question1, "No");
 			Answer answer3 = new Answer(question1, "Maybe");
 			
-			Answer answer4 = new Answer(question3, "Woof");
-			Answer answer5 = new Answer(question2, "Meow");
-			Answer answer6 = new Answer(question2, "Ohjelmistoprojekti 1 of course :)");
+			Answer answer4 = new Answer(animalQ1, "no");
+			Answer answer5 = new Answer(animalQ2, "Woof");
+			Answer answer6 = new Answer(animalQ3, "Meow?");
 			
 			qrepository.save(question1);
 			qrepository.save(question2);
@@ -66,7 +65,9 @@ public class KyselyAppApplication {
 			qrepository.save(question5);
 			qrepository.save(question6);
 			qrepository.save(question7);
-			
+			qrepository.save(animalQ1);
+			qrepository.save(animalQ2);
+			qrepository.save(animalQ3);
 			
 			arepository.save(answer1);
 			arepository.save(answer2);
