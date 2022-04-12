@@ -34,8 +34,9 @@ public class Answer {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Answer(String answer) {
+	public Answer(Question question, String answer) {
 		super();
+		this.question = question;
 		this.answer = answer;
 	}
 

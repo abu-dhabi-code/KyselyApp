@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.abu.dhabi.KyselyApp.domain.Answer;
+import com.abu.dhabi.KyselyApp.domain.AnswerRepository;
 import com.abu.dhabi.KyselyApp.domain.Question;
 import com.abu.dhabi.KyselyApp.domain.QuestionRepository;
 import com.abu.dhabi.KyselyApp.domain.QuestionType;
@@ -25,7 +27,7 @@ public class KyselyAppApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner questionDemo(QuestionRepository qrepository, SurveyRepository srepository) {
+	public CommandLineRunner questionDemo(QuestionRepository qrepository, SurveyRepository srepository, AnswerRepository arepository) {
 		return (args) -> {
 			log.info("save surveys");
 			Survey survey1 = new Survey("First survey");
@@ -36,10 +38,18 @@ public class KyselyAppApplication {
 			Question question1 = new Question(survey1, "Are you a frog?", QuestionType.Text);
 			Question question3 = new Question(survey1, "Are you a dog?", QuestionType.Text);
 			Question question4 = new Question(survey1, "Are you a cat?", QuestionType.Text);
-			
+					
 			Question question2 = new Question(survey2, "What's your favorite course in Haaga-Helia?", QuestionType.Text);
 			Question question5 = new Question(survey2, "...", QuestionType.Text);
 			Question question6 = new Question(survey2, "...", QuestionType.Text);
+			
+			Answer answer1 = new Answer(question1, "Yes");
+			Answer answer2 = new Answer(question1, "No");
+			Answer answer3 = new Answer(question1, "Maybe");
+			
+			Answer answer4 = new Answer(question3, "Woof");
+			Answer answer5 = new Answer(question4, "Meow");
+			Answer answer6 = new Answer(question2, "Ohjelmistoprojekti 1 of course :)");
 			
 			qrepository.save(question1);
 			qrepository.save(question2);
@@ -47,6 +57,13 @@ public class KyselyAppApplication {
 			qrepository.save(question4);
 			qrepository.save(question5);
 			qrepository.save(question6);
+			
+			arepository.save(answer1);
+			arepository.save(answer2);
+			arepository.save(answer3);
+			arepository.save(answer4);
+			arepository.save(answer5);
+			arepository.save(answer6);
 			
 			log.info("fetch all surveys");
 			for (Survey survey : srepository.findAll()) {
@@ -56,6 +73,11 @@ public class KyselyAppApplication {
 			log.info("fetch all questions");
 			for (Question question : qrepository.findAll()) {
 				log.info(question.toString());
+			}
+			
+			log.info("fetch all answers");
+			for (Answer answer : arepository.findAll()) {
+				log.info(answer.toString());
 			}
 		};
 	}
