@@ -17,15 +17,22 @@
 			class="flex flex-col items-center"
 		>
 			<input id="ID_FIELD" type="hidden" th:field="*{id}" />
+			<h2>Name</h2>
 			<input
 				th:field="*{surveyName}"
-				class="bg-white text-black px-2 mx-5 rounded"
+				class="bg-white text-black px-2 mx-5 rounded textbox-width"
 				type="text"
 				placeholder="Survey name" 
 			/>
+			<h2>Description</h2>
+			<textarea
+				th:field="*{description}"
+				class="bg-white text-black px-2 mx-5 rounded textbox-width"
+				placeholder="Survey description" 
+			></textarea>
 	
 			<input 
-				class="btn-primary mt-2"
+				class="btn-primary mt-5"
 				type="submit"
 				value="Add survey"
 			/>

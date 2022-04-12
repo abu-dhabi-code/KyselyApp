@@ -73,5 +73,4 @@ public class Survey {
 		return "Survey [id=" + id + ", surveyName=" + surveyName + ", description=" + description + "]";
 	}
 	
-	
 }
