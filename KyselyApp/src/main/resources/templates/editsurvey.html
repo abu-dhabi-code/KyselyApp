@@ -9,6 +9,10 @@
 	<div class="flex flex-col items-center">
 		<h1 class="text-2xl my-2">Edit survey</h1>
 		<h1 class="text-xl mb-3" th:text="${survey.surveyName}"></h1>
+		<div th:if="${saved}" class="textbox-saved" >
+			<h1 class="text-xl mb-3">Saved!</h1>
+		</div>
+		
 		<form
 			th:object="${survey}" 
 			th:action="@{/addquestion}"
@@ -61,6 +65,7 @@
 			if(result)
 				window.location.href = "/";
 		}
+		
 	</script>
 </body>
 

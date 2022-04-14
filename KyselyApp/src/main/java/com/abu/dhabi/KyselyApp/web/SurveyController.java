@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.abu.dhabi.KyselyApp.domain.Answer;
@@ -39,7 +40,7 @@ public class SurveyController {
 	}
 	
 	@RequestMapping(value = "/editsurvey/{id}", method = RequestMethod.GET)
-	public String editSurvey(@PathVariable("id") Long id, Model model) {
+	public String editSurvey(@RequestParam(required = false) boolean saved, @PathVariable("id") Long id, Model model) {
 		// Get the survey from corresponding to id from surveyRepository
 		// Will throw an exception and crash if one doesn't exist with that id
 		var survey = surveyRepository.findById(id).get();
@@ -47,6 +48,7 @@ public class SurveyController {
 
 		model.addAttribute("survey_id", id);
 		model.addAttribute("survey", survey);
+		model.addAttribute("saved", saved);
 		
 		System.out.println("kysymykset: " + survey.getQuestions());
 		return "editsurvey";
@@ -68,7 +70,9 @@ public class SurveyController {
 			questionRepository.save(newQuestion);
 		}
 		
-		return String.format("redirect:editsurvey/%d", savedSurvey.getId());
+		System.out.println(String.format("redirect:editsurvey/%d", savedSurvey.getId(), "?saved=true"));
+		
+		return String.format("redirect:editsurvey/%d?saved=true", savedSurvey.getId());
 
     }
 	
