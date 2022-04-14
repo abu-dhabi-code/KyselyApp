@@ -46,8 +46,22 @@
 				type="submit"
 				value="Save survey"
 			/>
+			
+			<input
+				class="btn-secondary mt-2"
+				type="button"
+				value="Go back"
+				onclick="confirmBack()"
+			/>
 		</form>
 	</div>
+	<script>
+		function confirmBack() {
+			const result = confirm("Are you sure? Any unsaved changes will be discarded.");
+			if(result)
+				window.location.href = "/";
+		}
+	</script>
 </body>
 
 </html>
