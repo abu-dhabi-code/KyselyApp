@@ -1,6 +1,24 @@
 
 
-function Question({ question, key }) {
+function Question({ question, key, answerState }) {
+
+    const [answers, setAnswers] = answerState;
+
+    function getAnswerByQuestionId(id) {
+        const results = answers.filter(a => a.id === id);
+
+        return results.length > 0 ? results[0].text : '';
+    }
+
+    function updateAnswerByQuestionId(newText, id) {
+        setAnswers(answers.map(a => {
+            // console.log(a)
+            if (a.id === id)
+                a.text = newText;
+            return a;
+        }));
+
+    }
 
     return (
         <div
@@ -24,6 +42,8 @@ function Question({ question, key }) {
                     type="text"
                     placeholder="Answer"
                     className="bg-white text-black px-2 mx-5 rounded textbox-width"
+                    value={getAnswerByQuestionId(question.id)}
+                    onChange={e => updateAnswerByQuestionId(e.currentTarget.value, question.id)}
                 />
             </div>
         </div>
