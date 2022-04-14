@@ -9,7 +9,7 @@ const API_URL = process.env.NODE_ENV === 'production'
  * @returns - Promise to a survey object.
  */
 export async function getSurvey(id) {
-    const data = await (await fetch(`${API_URL}survey/${id}`)).json();
+    const data = await (await fetch(`${API_URL}/v1/surveys/${id}`)).json();
 
     return data;
 
@@ -36,6 +36,6 @@ export async function getSurvey(id) {
 }
 
 export async function getSurveys() {
-  const data = await (await fetch(`${API_URL}surveys`)).json();
+  const data = await (await fetch(`${API_URL}/v1/surveys`)).json();
   return data;
 }

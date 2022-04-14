@@ -5,10 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.abu.dhabi.KyselyApp.domain.Answer;
+import com.abu.dhabi.KyselyApp.domain.AnswerRepository;
 import com.abu.dhabi.KyselyApp.domain.Question;
 import com.abu.dhabi.KyselyApp.domain.QuestionRepository;
 import com.abu.dhabi.KyselyApp.domain.QuestionType;
@@ -87,5 +92,5 @@ public class SurveyController {
 		List<Survey> surveys = (List<Survey>) surveyRepository.findAll();
 		model.addAttribute("surveys", surveys);
 		return "surveylist";
-	}
+	}  
 }

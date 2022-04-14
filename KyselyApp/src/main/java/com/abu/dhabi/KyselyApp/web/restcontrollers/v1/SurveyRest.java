@@ -1,4 +1,4 @@
-package com.abu.dhabi.KyselyApp.web;
+package com.abu.dhabi.KyselyApp.web.restcontrollers.v1;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +17,8 @@ import com.abu.dhabi.KyselyApp.domain.SurveyRepository;
 
 
 @Controller
-@RequestMapping("/api")
-public class RestController {
+@RequestMapping("/api/v1")
+public class SurveyRest {
 	
 	@Autowired
 	private SurveyRepository srepository;
@@ -35,7 +35,7 @@ public class RestController {
 	// RESTful service to get Survey by id
 	//pitäiskö enpointia muuttaa?
 	@CrossOrigin
-    @RequestMapping(value="/survey/{id}", method = RequestMethod.GET)
+    @RequestMapping(value="/surveys/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Survey> findSurveyRest(@PathVariable("id") Long SurveyId) {	
     	return srepository.findById(SurveyId);
     }      

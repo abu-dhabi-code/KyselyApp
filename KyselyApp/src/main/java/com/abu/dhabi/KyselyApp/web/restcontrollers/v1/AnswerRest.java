@@ -1,4 +1,4 @@
-package com.abu.dhabi.KyselyApp.web;
+package com.abu.dhabi.KyselyApp.web.restcontrollers.v1;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,38 +14,30 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.abu.dhabi.KyselyApp.domain.Answer;
 import com.abu.dhabi.KyselyApp.domain.AnswerRepository;
-import com.abu.dhabi.KyselyApp.domain.QuestionRepository;
-import com.abu.dhabi.KyselyApp.domain.SurveyRepository;
 
 @Controller
-@RequestMapping("/api")
-public class AnswerController {
+@RequestMapping("/api/v1")
+public class AnswerRest {
 
-	@Autowired
-	private SurveyRepository srepository;
-	
-	@Autowired
-	private QuestionRepository qrepository;
-	
 	@Autowired
 	private AnswerRepository arepository;
 	
 	// RESTful service to get all Answers
-    // Java-kielinen Answer-luokan oliolista muunnetaan JSON-listaksi ja 
-    // lähetetään web-selaimelle vastauksena
 	@CrossOrigin
     @RequestMapping(value="/answers", method = RequestMethod.GET)
     public @ResponseBody List<Answer> AnswerListRest() {	
         return (List<Answer>) arepository.findAll();
-    }    
+    }
 	
 	// Answer-luokan olio etsitään id:n mukaan
+	@CrossOrigin
 	@RequestMapping(value="/answers/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Answer> findAnswerRest(@PathVariable("id") Long answerId) {	
     	return arepository.findById(answerId);
     }     
 	
 	// Ensimmäinen yritys vastauksen tallentamiseen
+	@CrossOrigin
 	@RequestMapping(value="/answers", method = RequestMethod.POST)
     public @ResponseBody Answer saveAnswerRest(@RequestBody Answer answer) {	
     	return arepository.save(answer);
