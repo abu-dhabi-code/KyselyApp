@@ -36,6 +36,21 @@ export async function getSurvey(id) {
 }
 
 export async function getSurveys() {
-  const data = await (await fetch(`${API_URL}v1/surveys`)).json();
-  return data;
+    const data = await (await fetch(`${API_URL}v1/surveys`)).json();
+    return data;
+}
+
+export async function sendAnswers(answers) {
+    const dataList = [];
+    for (const answer of answers) {
+        const data = await (await fetch(`${API_URL}v1/answers`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/JSON'
+            },
+            body: JSON.stringify(answer)
+        })).json();
+        dataList.push(data);
+    }
+    return dataList;
 }
