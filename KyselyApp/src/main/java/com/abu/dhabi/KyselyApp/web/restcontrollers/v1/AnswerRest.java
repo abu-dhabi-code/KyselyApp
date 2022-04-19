@@ -1,5 +1,6 @@
 package com.abu.dhabi.KyselyApp.web.restcontrollers.v1;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,8 +40,11 @@ public class AnswerRest {
 	// Ensimmäinen yritys vastauksen tallentamiseen
 	@CrossOrigin
 	@RequestMapping(value="/answers", method = RequestMethod.POST)
-    public @ResponseBody Answer saveAnswerRest(@RequestBody Answer answer) {	
-    	return arepository.save(answer);
+    public @ResponseBody List<Answer> 
+	saveAnswerRest(@RequestBody List<Answer> answers) {
+		var savedAnswers = new ArrayList<Answer>(answers.size());
+		for (var answer : answers)
+			savedAnswers.add(arepository.save(answer));
+		return savedAnswers;
     }
-	
 }
