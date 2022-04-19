@@ -6,7 +6,8 @@
    	<link rel="stylesheet" href="/assets/index.css">
 </head>
 <body class="bg-dk-byzantium text-lt-yellow">
-	<div class="flex flex-col items-center">
+	<div th:insert="fragments/header :: header"></div>
+	<div class="flex flex-col items-center">		
 		<h1 class="text-2xl my-2">Edit survey</h1>
 		<h1 class="text-xl mb-3" th:text="${survey.surveyName}"></h1>
 		<div th:if="${saved}" class="textbox-saved" >
