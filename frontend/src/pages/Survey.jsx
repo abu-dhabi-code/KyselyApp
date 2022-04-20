@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Question from "../components/Question";
-import { getSurvey } from "../utils/api";
+import { getSurvey, sendAnswers } from "../utils/api";
 
 function Survey() {
     const id = parseInt(useParams().id);
     const [survey, setSurvey] = useState();
     const [answers, setAnswers] = useState([]);
-
 
     console.log(id);
 
@@ -30,6 +29,16 @@ function Survey() {
 
     function submitAnswers() {
         console.log(answers);
+        const answerObject = answers.map(e => {
+            return {
+                answer: e.text,
+                question: {
+                    id: e.id
+                }
+            }
+        });
+        sendAnswers(answerObject)
+            .then(res => console.log(res))
     }
 
     return (
