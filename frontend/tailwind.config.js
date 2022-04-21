@@ -3,7 +3,8 @@ module.exports = {
   content: [
     "./src/**/*.{html,js,jsx}",
     "./index.html",
-    "../KyselyApp/src/main/resources/templates/**/*.html"
+    "../KyselyApp/src/main/resources/templates/**/*.html",
+    "./templates/**/*.html"
   ],
   theme: {
     extend: {

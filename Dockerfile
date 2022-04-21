@@ -8,6 +8,7 @@ COPY frontend/postcss.config.js .
 COPY frontend/tailwind.config.js .
 COPY frontend/vite.config.docker.js vite.config.js
 COPY frontend/index.html .
+COPY KyselyApp/src/main/resources/templates templates/
 
 RUN yarn
 RUN yarn build
