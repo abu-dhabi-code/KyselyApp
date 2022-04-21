@@ -28,12 +28,11 @@ public class SurveyRest {
     // lähetetään web-selaimelle vastauksena
 	@CrossOrigin
     @RequestMapping(value="/surveys", method = RequestMethod.GET)
-    public @ResponseBody List<Survey> SurveyListRest() {	
+    public @ResponseBody List<Survey> surveyListRest() {	
         return (List<Survey>) srepository.findAll();
     }    
 
 	// RESTful service to get Survey by id
-	//pitäiskö enpointia muuttaa?
 	@CrossOrigin
     @RequestMapping(value="/surveys/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Survey> findSurveyRest(@PathVariable("id") Long SurveyId) {	
