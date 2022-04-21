@@ -12,7 +12,7 @@
 		<h1 class="text-xl mb-3" th:text="${survey.surveyName}"></h1>
 		<h2 class="text-lg mb-3" th:text="${survey.description}"></h2>
 		<div th:if="${saved}" class="textbox-saved" id="saved" >
-			<h1 class="text-xl mb-3">Saved!</h1>
+			<h1 class="text-xl mb-3">Questions saved!</h1>
 		</div>
 		
 		<form
@@ -50,7 +50,7 @@
 			<input 
 				class="btn-primary mt-2"
 				type="submit"
-				value="Save survey"
+				value="Save questions"
 			/>
 			
 			<input
