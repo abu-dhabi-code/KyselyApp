@@ -52,16 +52,17 @@ function Survey() {
                 {!showSuccess &&
                 (survey
                     ?
-                    (survey.questions.map(question => (
-                        <><span key={question.id} >
-                            <Question
-                                question={question}
-                                answerState={[answers, setAnswers]}
-                            />
-                        </span>
-                        <button className="btn-primary mt-auto mb-4" onClick={submitAnswers}>Submit answers</button>
-                        </>
-                    )))
+                    <div className="flex flex-col items-center">
+                        {(survey.questions.map(question => (
+                            <span key={question.id} >
+                                <Question
+                                    question={question}
+                                    answerState={[answers, setAnswers]}
+                                />
+                            </span>
+                        )))}
+                    <button className="btn-primary mt-auto mb-4" onClick={submitAnswers}>Submit answers</button>
+                    </div>
                     :
                     (
                         <h1>Loading</h1>
