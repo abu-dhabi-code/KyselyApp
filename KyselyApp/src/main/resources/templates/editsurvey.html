@@ -15,6 +15,10 @@
 			<h1 class="text-xl mb-3">Questions saved!</h1>
 		</div>
 		
+		<div class="textbox-error invisible" id="error" >
+			<h1 class="text-xl mb-3">Go save!</h1>
+		</div>
+		
 		<form
 			th:object="${survey}" 
 			th:action="@{/addquestion}"
@@ -23,7 +27,7 @@
 		>
 			<input type="hidden" th:field="*{id}" readonly="readonly" />
 			<input type="hidden" th:field="*{surveyName}" readonly="readonly"/>
-			<input class="btn-primary" type="submit" value="Add new question" />
+			<input class="btn-primary" type="submit" value="Add new question" id="addNewQuestionButton"/>
 		</form>
 		
 		<form 
@@ -44,6 +48,7 @@
 					type="text"
 					placeholder="Question" 
 					th:field="*{questions[__${stat.index}__].name}" 
+					id="question"
 				/>
 			</div>
 	
@@ -73,6 +78,34 @@
 		function closeSavedDiv(){
 		document.getElementById("saved").style.display=" none";
 		}
+		
+		const inputFields = document.querySelectorAll("#question");
+		
+		const addNewQuestionBtn = document.querySelector("#addNewQuestionButton");
+		
+		const goSave = document.createElement("input");
+		
+		goSave.type="button";
+		goSave.value="Add new question";
+		goSave.classList.add("btn-primary");
+		
+		goSave.addEventListener("click", e => {
+			console.log("GO SAVE!!")
+			const errorToast = document.querySelector("#error");
+			errorToast.classList.remove('invisible');
+		});
+		
+		for (const input of inputFields){
+			input.addEventListener("change", e => {
+				console.log(e);
+				addNewQuestionBtn.replaceWith(goSave);
+			});
+			
+			
+		}
+		
+		
+		
 	</script>
 </body>
 

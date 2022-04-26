@@ -28,6 +28,12 @@
     flex justify-center items-center
   }
 
+  .textbox-error{
+    @apply bg-red-400 px-3 py-1 rounded
+    w-[19rem]
+    flex justify-center items-center
+  }
+
   .textbox-width {
     @apply w-[38rem]
   }

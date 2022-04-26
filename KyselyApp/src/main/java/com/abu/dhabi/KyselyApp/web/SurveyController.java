@@ -79,6 +79,7 @@ public class SurveyController {
 	public String addQuestion(@ModelAttribute Survey survey) {
 		// We'll take the survey object from the form
 		// Create new question for the survey and save it
+		
 		var newQuestion = new Question(survey, "", QuestionType.Text);
 		questionRepository.save(newQuestion);
 		
