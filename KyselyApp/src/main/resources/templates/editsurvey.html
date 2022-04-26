@@ -16,13 +16,19 @@
 		</div>
 		
 		<form
-			th:object="${survey}" 
+			th:object="${addQuestion}" 
 			th:action="@{/addquestion}"
 			method="post"
 			action="#"
 		>
 			<input type="hidden" th:field="*{id}" readonly="readonly" />
-			<input type="hidden" th:field="*{surveyName}" readonly="readonly"/>
+			<select id="questionTypeSelect" th:field="*{questionType}">
+				<option value="text">Text</option>
+				<option value="longtext">Long Text</option>
+				<option value="radio">Radio</option>
+				<option value="multiselect">Multiselect</option>
+			</select>
+			<label for="questionTypeSelect">Question type</label>
 			<input class="btn-primary" type="submit" value="Add new question" />
 		</form>
 		
