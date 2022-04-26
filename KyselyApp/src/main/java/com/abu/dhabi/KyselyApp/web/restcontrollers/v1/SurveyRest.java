@@ -1,11 +1,11 @@
 package com.abu.dhabi.KyselyApp.web.restcontrollers.v1;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,12 +41,23 @@ public class SurveyRest {
 		return surveys;
     } 
 
-	// RESTful service to get Survey by id
+	// RESTful service to get Survey by id without answers
 	@CrossOrigin
     @RequestMapping(value="/surveys/{id}", method = RequestMethod.GET)
-    public @ResponseBody Optional<Survey> findSurveyRest(@PathVariable("id") Long SurveyId) {	
-    	return srepository.findById(SurveyId);
-    }      
+    public @ResponseBody Survey findSurveyRest(@PathVariable("id") Long SurveyId) {	
+    	var survey = srepository.findById(SurveyId).get(); 
+			for (var question : survey.getQuestions()) {
+				question.setAnswers(null);
+			}
+		return survey;
+    }    
+	
+	// RESTful service to get Survey by id with answers
+	@CrossOrigin
+	@RequestMapping(value="/surveys/{id}/answers", method = RequestMethod.GET)
+	public @ResponseBody Optional<Survey> findSurveyRestAnswers(@PathVariable("id") Long SurveyId) {	
+	return srepository.findById(SurveyId); 
+	}      
     
     // RESTful service to save new Survey
 	@CrossOrigin
@@ -56,5 +67,8 @@ public class SurveyRest {
     }
 	
 	//REST Home Page
-    
+	@RequestMapping(value= "/resthome", method = RequestMethod.GET)
+	public String RestHome(Model model){
+	return "resthome";
+	}
 }

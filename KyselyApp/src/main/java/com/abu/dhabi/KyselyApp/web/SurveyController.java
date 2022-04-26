@@ -96,8 +96,5 @@ public class SurveyController {
 		return "surveylist";
 	}  
 	
-	@RequestMapping(value= "/resthome", method = RequestMethod.GET)
-	public String RestHome(Model model){
-	return "resthome";
-	}
+	
 }
