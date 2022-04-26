@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Question from "../components/Question";
+import Success from "../components/Success";
 import { getSurvey, sendAnswers } from "../utils/api";
 
 function Survey() {
     const id = parseInt(useParams().id);
     const [survey, setSurvey] = useState();
     const [answers, setAnswers] = useState([]);
+    const [showSuccess, setShowSuccess] = useState(false);
 
     console.log(id);
 
@@ -39,6 +41,7 @@ function Survey() {
         });
         sendAnswers(answerObject)
             .then(res => console.log(res))
+        setShowSuccess(true);
     }
 
     return (
@@ -46,24 +49,32 @@ function Survey() {
             <h1 className="text-2xl my-2">{survey?.surveyName}</h1>
             <p>{survey?.description}</p>
             <div className="mt-2">
-                {survey
+                {!showSuccess &&
+                (survey
                     ?
                     (survey.questions.map(question => (
-                        <span key={question.id} >
+                        <><span key={question.id} >
                             <Question
                                 question={question}
                                 answerState={[answers, setAnswers]}
                             />
                         </span>
+                        <button className="btn-primary mt-auto mb-4" onClick={submitAnswers}>Submit answers</button>
+                        </>
                     )))
                     :
                     (
                         <h1>Loading</h1>
                     )
+                    
+                )
                 }
+                {showSuccess &&
+                    <Success />
 
+                }
             </div>
-            <button className="btn-primary mt-auto mb-4" onClick={submitAnswers}>Submit answers</button>
+            
             <Link className="btn-primary mt-auto mb-4" to="/">Go back home</Link>
         </div>
     )
