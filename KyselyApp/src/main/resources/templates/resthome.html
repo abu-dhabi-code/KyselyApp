@@ -6,72 +6,131 @@
    	<link rel="stylesheet" href="/assets/index.css">
 </head>
 <body class="bg-dk-byzantium text-lt-yellow">
-	<div class="flex flex-col items-center">
-	<h1>REST Home Page</h1>
-		<h2>All Surveys</h2>
-		<p>Method: GET Endpoint: <a href="/api/v1/surveys">/surveys</a></p>
-		<p>JSON Example: </p>
-		<pre><code>[
-  {
-    "id": 1,
-    "surveyName": "Survey 1",
-    "description": "My first survey",
-    "questions": 
-    [{
-    	"id:" 1,
-    	"name": "How are you?"
-    	"answers":
-    	[{
-    		"id": 1,
-    		"answer": "Good",
-    		"type": "Text"
-    	},
-    	{
-    		"id": 2,
-    		"answer": "Bad",
-    		"type": "Text"
-    	}]
-    }]
-  }
-]
+	<div th:insert="fragments/header :: header"></div>
+	<div class="flex flex-col items-center m-5 space-y-3">
+	
+	<h1 class="text-4xl pb-6">REST Home Page</h1>
+		<h2 class="text-2xl underline">All Surveys</h2>
+		<p>GET <a href="/api/v1/surveys" class="text-blue-600 hover:text-purple-600">/api/v1/surveys</a></p>
+		<p class="font-bold">JSON Example: </p>
+		<div class="bg-teal-blue w-full flex flex-row items-center justify-center pd-6">
+		<pre><code>
+		[{
+			"id":1,"surveyName":"Asiakastyytyväisyyskysely",
+			"description":"Kerro mielipiteesi!",
+			"questions":
+			[{
+				"id":1,"name":"Kuinka usein vierailet ravintola Pääraiteessa?",
+				"answers":[],
+				"type":"Text"
+				},
+				{
+				"id":2,
+				"name":"Kuinka usein nautit aamiaisen ravintola Pääraiteessa?",
+				"answers":[],
+				"type":"Text"
+				},
+				{
+				"id":3,
+				"name":"Kuinka usein ostat lounaan yhteydessä myös jälkiruoan?",
+				"answers":[],
+				"type":"Text"
+				},
+				{
+				"id":4,
+				"name":"Miten tyytyväinen olet ravintolan aamiaiseen?",
+				"answers":[],
+				"type":"Text"
+				},
+				{
+				"id":5,
+				"name":"Miten tyytyväinen olet ravintolan lounaaseen?",
+				"answers":[],
+				"type":"Text"
+				},
+				{
+				"id":6,
+				"name":"Millaisia ruokia kaipaat lounasvalikoimaan?",
+				"answers":[],
+				"type":"Text"
+				},
+				{
+				"id":7,
+				"name":"Miten hyvin ravintolassa on huomioitu eri ruokavaliot ja allergiat?",
+				"answers":[],
+				"type":"Text"
+			}]
+		}]
+		
 </code></pre>
-		<h2>Survey by Id</h2>
-		<p>GET <a href="/api/v1/surveys/{id}">/surveys/{id}</a></p>
-		<p>JSON Example: </p>
-		<pre><code>[
-  {
-    "id": 1,
-    "surveyName": "Survey 1",
-    "description": "My first survey",
-    "questions": 
-    [{
-    	"id:" 1,
-    	"name": "How are you?"
-    	"answers":
-    	[{
-    		"id": 1,
-    		"answer": "Good",
-    		"type": "Text"
-    	},
-    	{
-    		"id": 2,
-    		"answer": "Bad",
-    		"type": "Text"
-    	}]
-    }]
-  }
-]
+</div>
+		<h2 class="text-2xl underline">Survey by Id</h2>
+		<p>GET <a href="/api/v1/surveys/{id}" class="text-blue-600 hover:text-purple-600">/api/v1/surveys/{id}</a></p>
+		<p class="font-bold">JSON Example: </p>
+		<div class="bg-teal-blue w-full flex flex-row items-center justify-center pd-6">
+		<pre><code>
+		[{
+			"id":1,"surveyName":"Asiakastyytyväisyyskysely",
+			"description":"Kerro mielipiteesi!",
+			"questions":
+			[{
+				"id":1,"name":"Kuinka usein vierailet ravintola Pääraiteessa?",
+				"answers":[],
+				"type":"Text"
+				},
+				{
+				"id":2,
+				"name":"Kuinka usein nautit aamiaisen ravintola Pääraiteessa?",
+				"answers":[],
+				"type":"Text"
+				},
+				{
+				"id":3,
+				"name":"Kuinka usein ostat lounaan yhteydessä myös jälkiruoan?",
+				"answers":[],
+				"type":"Text"
+				},
+				{
+				"id":4,
+				"name":"Miten tyytyväinen olet ravintolan aamiaiseen?",
+				"answers":[],
+				"type":"Text"
+				},
+				{
+				"id":5,
+				"name":"Miten tyytyväinen olet ravintolan lounaaseen?",
+				"answers":[],
+				"type":"Text"
+				},
+				{
+				"id":6,
+				"name":"Millaisia ruokia kaipaat lounasvalikoimaan?",
+				"answers":[],
+				"type":"Text"
+				},
+				{
+				"id":7,
+				"name":"Miten hyvin ravintolassa on huomioitu eri ruokavaliot ja allergiat?",
+				"answers":[],
+				"type":"Text"
+			}]
+		}]
+  
 </code></pre>
-		<h2>New Answer</h2>
-		<p>POST /answers (Test with PostMan/etc.)</p>
-		<p>JSON Example</p>
+</div>
+		<h2 class="text-2xl underline">New Answer</h2>
+		<p class="text-orange-600">POST /api/v1/answers (Test with PostMan/etc.)</p>
+		<p class="font-bold">JSON Example</p>
+		<div class="bg-teal-blue w-full flex flex-row items-center justify-center pd-6">
 		<pre><code>
 		[{
 		"answer": "Yes",
 		"question": {"id": 1},
 		"type": "Text"
 		}]
+		
 </code></pre>
+</div>
 			
 	</div>
 </body>
