@@ -1,5 +1,6 @@
 package com.abu.dhabi.KyselyApp.web.restcontrollers.v1;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.abu.dhabi.KyselyApp.domain.Question;
 import com.abu.dhabi.KyselyApp.domain.Survey;
 import com.abu.dhabi.KyselyApp.domain.SurveyRepository;
 
@@ -29,9 +31,16 @@ public class SurveyRest {
     // lähetetään web-selaimelle vastauksena
 	@CrossOrigin
     @RequestMapping(value="/surveys", method = RequestMethod.GET)
-    public @ResponseBody List<Survey> surveyListRest() {	
-        return (List<Survey>) srepository.findAll();
-    }    
+    public @ResponseBody List<Survey> surveyListRest() {
+		var surveys = (List<Survey>) srepository.findAll();
+		
+		for (var survey : surveys) {
+			for (var question : survey.getQuestions()) {
+				question.setAnswers(null);
+			}
+		}
+		return surveys;
+    } 
 
 	// RESTful service to get Survey by id
 	@CrossOrigin
