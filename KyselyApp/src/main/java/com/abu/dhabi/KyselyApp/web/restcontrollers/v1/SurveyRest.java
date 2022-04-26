@@ -1,6 +1,5 @@
 package com.abu.dhabi.KyselyApp.web.restcontrollers.v1;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,12 +41,23 @@ public class SurveyRest {
 		return surveys;
     } 
 
-	// RESTful service to get Survey by id
+	// RESTful service to get Survey by id without answers
 	@CrossOrigin
     @RequestMapping(value="/surveys/{id}", method = RequestMethod.GET)
-    public @ResponseBody Optional<Survey> findSurveyRest(@PathVariable("id") Long SurveyId) {	
-    	return srepository.findById(SurveyId);
-    }      
+    public @ResponseBody Survey findSurveyRest(@PathVariable("id") Long SurveyId) {	
+    	var survey = srepository.findById(SurveyId).get(); 
+			for (var question : survey.getQuestions()) {
+				question.setAnswers(null);
+			}
+		return survey;
+    }    
+	
+	// RESTful service to get Survey by id with answers
+	@CrossOrigin
+	@RequestMapping(value="/surveys/{id}/answers", method = RequestMethod.GET)
+	public @ResponseBody Optional<Survey> findSurveyRestAnswers(@PathVariable("id") Long SurveyId) {	
+	return srepository.findById(SurveyId); 
+	}      
     
     // RESTful service to save new Survey
 	@CrossOrigin
