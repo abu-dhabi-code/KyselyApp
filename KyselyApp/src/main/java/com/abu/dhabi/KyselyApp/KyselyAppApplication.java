@@ -37,18 +37,18 @@ public class KyselyAppApplication {
 			srepository.save(survey1);
 			srepository.save(survey2);
 			
-			Question question1 = new Question(survey1, "Kuinka usein vierailet ravintola Pääraiteessa?", QuestionType.Text);
-			Question question2 = new Question(survey1, "Kuinka usein nautit aamiaisen ravintola Pääraiteessa?", QuestionType.Text);
-			Question question3 = new Question(survey1, "Kuinka usein ostat lounaan yhteydessä myös jälkiruoan?", QuestionType.Text);
-			Question question4 = new Question(survey1, "Miten tyytyväinen olet ravintolan aamiaiseen?", QuestionType.Text);
-			Question question5 = new Question(survey1, "Miten tyytyväinen olet ravintolan lounaaseen?", QuestionType.Text);
-			Question question6 = new Question(survey1, "Millaisia ruokia kaipaat lounasvalikoimaan?", QuestionType.Text);
-			Question question7 = new Question(survey1, "Miten hyvin ravintolassa on huomioitu eri ruokavaliot ja allergiat?", QuestionType.Text);
+			Question question1 = new Question(survey1, "Kuinka usein vierailet ravintola Pääraiteessa?", QuestionType.Type.Text);
+			Question question2 = new Question(survey1, "Kuinka usein nautit aamiaisen ravintola Pääraiteessa?", QuestionType.Type.Text);
+			Question question3 = new Question(survey1, "Kuinka usein ostat lounaan yhteydessä myös jälkiruoan?", QuestionType.Type.Text);
+			Question question4 = new Question(survey1, "Miten tyytyväinen olet ravintolan aamiaiseen?", QuestionType.Type.Text);
+			Question question5 = new Question(survey1, "Miten tyytyväinen olet ravintolan lounaaseen?", QuestionType.Type.Text);
+			Question question6 = new Question(survey1, "Millaisia ruokia kaipaat lounasvalikoimaan?", QuestionType.Type.Text);
+			Question question7 = new Question(survey1, "Miten hyvin ravintolassa on huomioitu eri ruokavaliot ja allergiat?", QuestionType.Type.Text);
 			// Question question8 = new Question(survey1, "Kuinka usein ostat lounaan yhteydessä myös jälkiruoan?", QuestionType.Text);
 			
-			Question animalQ1 = new Question(survey2, "Are you a frog?", QuestionType.Text);
-			Question animalQ2 = new Question(survey2, "Are you a dog?", QuestionType.Text);
-			Question animalQ3 = new Question(survey2, "Are you a cat?", QuestionType.Text);
+			Question animalQ1 = new Question(survey2, "Are you a frog?", QuestionType.Type.Text);
+			Question animalQ2 = new Question(survey2, "Are you a dog?", QuestionType.Type.Text);
+			Question animalQ3 = new Question(survey2, "Are you a cat?", QuestionType.Type.Text);
 			
 			Answer answer1 = new Answer(question1, "Yes");
 			Answer answer2 = new Answer(question1, "No");

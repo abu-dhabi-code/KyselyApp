@@ -39,9 +39,9 @@ public class Question {
 	}
 
 	// Text is the default question type for now
-	private QuestionType type = QuestionType.Text;
+	private QuestionType.Type type = QuestionType.Type.Text;
 
-	public Question(Survey survey, String question, QuestionType type) {
+	public Question(Survey survey, String question, QuestionType.Type type) {
 		super();
 		this.survey = survey;
 		this.name = question;
@@ -74,11 +74,11 @@ public class Question {
 		this.survey = survey;
 	}
 
-	public QuestionType getType() {
+	public QuestionType.Type getType() {
 		return type;
 	}
 
-	public void setType(QuestionType type) {
+	public void setType(QuestionType.Type type) {
 		this.type = type;
 	}
 	

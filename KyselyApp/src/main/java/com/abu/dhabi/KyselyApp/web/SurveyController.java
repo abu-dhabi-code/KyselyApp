@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.abu.dhabi.KyselyApp.domain.Question;
 import com.abu.dhabi.KyselyApp.domain.QuestionRepository;
 import com.abu.dhabi.KyselyApp.domain.QuestionType;
 import com.abu.dhabi.KyselyApp.domain.Survey;
 import com.abu.dhabi.KyselyApp.domain.SurveyRepository;
+import com.abu.dhabi.KyselyApp.web.domain.AddQuestion;
 
 @Controller
 public class SurveyController {
@@ -25,6 +25,8 @@ public class SurveyController {
 	
 	@Autowired
 	private QuestionRepository questionRepository;
+	
+
 
 	@RequestMapping(value = "/addsurvey", method = RequestMethod.GET)
 	public String addSurvey(Model model) {
@@ -42,9 +44,11 @@ public class SurveyController {
 		// Will throw an exception and crash if one doesn't exist with that id
 		var survey = surveyRepository.findById(id).get();
 		
+		var addQuestion = new AddQuestion(survey.getId(), "text");
 
 		model.addAttribute("survey_id", id);
 		model.addAttribute("survey", survey);
+		model.addAttribute("addQuestion", addQuestion);
 		model.addAttribute("saved", saved);
 		
 		System.out.println("kysymykset: " + survey.getQuestions());
@@ -63,7 +67,7 @@ public class SurveyController {
 			for (var question : survey.getQuestions())
 				questionRepository.save(question);
 		} else {
-			var newQuestion = new Question(savedSurvey, "", QuestionType.Text);
+			var newQuestion = new Question(savedSurvey, "", QuestionType.Type.Text);
 			questionRepository.save(newQuestion);
 		}
 		
@@ -76,11 +80,14 @@ public class SurveyController {
 	// Adding a question to the survey
 	// Check the survey ID and and to the questionlist in the id
 	@RequestMapping(value="/addquestion", method = RequestMethod.POST)
-	public String addQuestion(@ModelAttribute Survey survey) {
+	public String addQuestion(@ModelAttribute AddQuestion addQuestion) {
+		var survey = surveyRepository.findById(addQuestion.getId()).get();
+		
+		var questionType = QuestionType.fromString(addQuestion.getQuestionType());
+		
 		// We'll take the survey object from the form
 		// Create new question for the survey and save it
-		
-		var newQuestion = new Question(survey, "", QuestionType.Text);
+		var newQuestion = new Question(survey, "", questionType);
 		questionRepository.save(newQuestion);
 		
 		// Redirect the user back to the survey's edit page
