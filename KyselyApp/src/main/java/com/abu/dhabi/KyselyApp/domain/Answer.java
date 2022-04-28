@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Answer {
-
+	
 	@Id
 	@NonNull
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class Answer {
 	private Question question;
 	
 	// Text is default answer type for now
-	private QuestionType type = QuestionType.Text;
+	private QuestionType.Type type = QuestionType.Type.Text;
 	
 	public Answer() {
 		super();
@@ -52,7 +52,7 @@ public class Answer {
 		return question;
 	}
 
-	public QuestionType getType() {
+	public QuestionType.Type getType() {
 		return type;
 	}
 
@@ -68,7 +68,7 @@ public class Answer {
 		this.question = question;
 	}
 
-	public void setType(QuestionType type) {
+	public void setType(QuestionType.Type type) {
 		this.type = type;
 	}
 

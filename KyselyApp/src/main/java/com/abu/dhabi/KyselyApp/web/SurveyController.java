@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +16,7 @@ import com.abu.dhabi.KyselyApp.domain.QuestionRepository;
 import com.abu.dhabi.KyselyApp.domain.QuestionType;
 import com.abu.dhabi.KyselyApp.domain.Survey;
 import com.abu.dhabi.KyselyApp.domain.SurveyRepository;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.abu.dhabi.KyselyApp.web.domain.AddQuestion;
 
 @Controller
 public class SurveyController {
@@ -27,42 +26,6 @@ public class SurveyController {
 	@Autowired
 	private QuestionRepository questionRepository;
 	
-	
-	public class AddQuestion {
-		@JsonProperty("id")
-		private Long id;
-		@JsonProperty("questionType")
-		private String questionType;
-		
-		
-		
-		public AddQuestion(Long id, String questionType) {
-			super();
-			this.id = id;
-			this.questionType = questionType;
-		}
-
-		public Long getId() {
-			return id;
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		public String getQuestionType() {
-			return questionType;
-		}
-
-		public void setQuestionType(String questionType) {
-			this.questionType = questionType;
-		}
-
-		public AddQuestion() {
-			super();
-		}
-		
-	}
 
 
 	@RequestMapping(value = "/addsurvey", method = RequestMethod.GET)
@@ -104,7 +67,7 @@ public class SurveyController {
 			for (var question : survey.getQuestions())
 				questionRepository.save(question);
 		} else {
-			var newQuestion = new Question(savedSurvey, "", QuestionType.Text);
+			var newQuestion = new Question(savedSurvey, "", QuestionType.Type.Text);
 			questionRepository.save(newQuestion);
 		}
 		
@@ -118,15 +81,9 @@ public class SurveyController {
 	// Check the survey ID and and to the questionlist in the id
 	@RequestMapping(value="/addquestion", method = RequestMethod.POST)
 	public String addQuestion(@ModelAttribute AddQuestion addQuestion) {
-		var survey = surveyRepository.findById(addQuestion.id).get();
+		var survey = surveyRepository.findById(addQuestion.getId()).get();
 		
-		var questionType = QuestionType.Text;
-		switch (addQuestion.questionType) {
-			case "text": questionType = QuestionType.Text; break;
-			case "longtext": questionType = QuestionType.LongText; break;
-			case "radio": questionType = QuestionType.Radio; break;
-			case "multiselect": questionType = QuestionType.Multiselect; break;
-		}
+		var questionType = QuestionType.fromString(addQuestion.getQuestionType());
 		
 		// We'll take the survey object from the form
 		// Create new question for the survey and save it
