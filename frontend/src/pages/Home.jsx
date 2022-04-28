@@ -26,6 +26,7 @@ function Home() {
                       To survey #{s.id} - {s.surveyName}
                   </Link>
                   <a className="btn-secondary ml-auto mr-0" href={`/editsurvey/${s.id}`}>Edit</a>
+                  <Link className="btn-tertiary ml-auto mr-0" to={`/survey/${s.id}/answers`}>Results</Link>
                   </div>
                 )))
               }

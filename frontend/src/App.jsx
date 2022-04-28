@@ -2,6 +2,7 @@ import { Route, Routes, Link } from "react-router-dom"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import Survey from "./pages/Survey"
+import Results from "./pages/Results"
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/survey/:id" element={<Survey />} />
+        <Route path="/survey/:id/answers" element={<Results />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

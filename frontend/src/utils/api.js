@@ -50,3 +50,9 @@ export async function sendAnswers(answers) {
     })).json();
     return data;
 }
+
+export async function getAnswers(id) {
+    const data = await (await fetch(`${API_URL}v1/surveys/${id}/answers`)).json();
+
+    return data;
+}
