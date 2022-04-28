@@ -33,20 +33,23 @@ function Results() {
       <div className="flex flex-col items-center h-full">
             <h1 className="text-3xl mt-3 mb-6">Survey Results</h1>
             <div className="flex flex-col items-stretch gap-4 justify-evenly">
-              <p>{survey?.surveyName}</p>
+              <h2>{survey?.surveyName}</h2>
               <p>{survey?.description}</p>
-
+              <table>
               {results.map(r => (
                 <div key={r.id+r.question} className="flex gap-4 justify-start w-full">
-                  <h2>{r.question}</h2>
+                  <th>{r.question}</th>
                   <div className="flex gap-4 justify-start w-full">
                     {r.answers.map(a => (
-                      <p key={a.id+a.answer}>{a.answer}</p>
+                      <tr key={a.id+a.answer}>{a.answer}</tr>
                     ))}
                   </div>
                 </div>  
+                
               ))}
+              </table>
             </div>
+            
         </div>
     );
 }
