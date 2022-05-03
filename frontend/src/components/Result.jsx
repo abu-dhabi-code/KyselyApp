@@ -8,14 +8,14 @@ function Result({ result }){
 
     const question = result.question;
 
-    
+    const count = Math.floor(Math.random() * 10);
 
     
 
     return (
         <div
             className="bg-sweet-brown 
-                m-3
+                m-3 w-full
                 px-1 py-1 rounded shadow-sm
                 flex flex-col items-center"
         >
@@ -36,10 +36,21 @@ function Result({ result }){
                     onClick={() => setShowResults(!showResults)}
                 />
                 {showResults && (
-                    <div className="flex flex-col gap-4 mt-2 justify-center w-full">
+                    <div className="flex flex-col gap-4 pt-2 pl-6 justify-center items-start w-full">
                         {result.answers.length > 0 && 
                             result.answers.map(a => (
-                            <p key={a.id+a.answer}>{a.answer}</p>
+                            <div className="flex justify-start w-full">
+                                <p key={a.id+a.answer}>{a.answer}</p>
+                                <p 
+                                  className="flex justify-center items-center
+                                  mr-6 ml-auto 
+                                  bg-tea-green text-dk-byzantium
+                                  rounded-full 
+                                  w-8 h-8"
+                                >
+                                  {count}
+                                </p>
+                            </div>
                             ))
                         }
                         {result.answers.length === 0 &&
