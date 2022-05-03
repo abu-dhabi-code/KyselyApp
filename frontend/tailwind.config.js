@@ -11,7 +11,7 @@ module.exports = {
       colors: {
         'dk-byzantium': '#482C3D',
         'sweet-brown': '#AC3931',
-        'tea-green': '#C4F1BE',
+        'tea-green': '#93d08b',
         'lt-yellow': '#F8FFE5',
         'teal-blue': '#537D8D',
       }
