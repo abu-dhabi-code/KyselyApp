@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.abu.dhabi.KyselyApp.domain.Question;
 import com.abu.dhabi.KyselyApp.domain.Survey;
 import com.abu.dhabi.KyselyApp.domain.SurveyRepository;
 
@@ -55,15 +54,15 @@ public class SurveyRest {
 	// RESTful service to get Survey by id with answers
 	@CrossOrigin
 	@RequestMapping(value="/surveys/{id}/answers", method = RequestMethod.GET)
-	public @ResponseBody Optional<Survey> findSurveyRestAnswers(@PathVariable("id") Long SurveyId) {	
-	return srepository.findById(SurveyId); 
+	public @ResponseBody Optional<Survey> findSurveyRestAnswers(@PathVariable("id") Long surveyId) {	
+		return srepository.findById(surveyId);
 	}      
     
     // RESTful service to save new Survey
 	@CrossOrigin
     @RequestMapping(value="/surveys", method = RequestMethod.POST)
-    public @ResponseBody Survey saveSurveyRest(@RequestBody Survey Survey) {	
-    	return srepository.save(Survey);
+    public @ResponseBody Survey saveSurveyRest(@RequestBody Survey survey) {	
+    	return srepository.save(survey);
     }
 	
 	//REST Home Page

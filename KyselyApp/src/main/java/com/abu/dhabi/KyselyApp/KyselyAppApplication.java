@@ -57,6 +57,10 @@ public class KyselyAppApplication {
 			Answer answer4 = new Answer(animalQ1, "no");
 			Answer answer5 = new Answer(animalQ2, "Woof");
 			Answer answer6 = new Answer(animalQ3, "Meow?");
+			Answer answer7 = new Answer(animalQ1, "yes");
+			Answer answer8 = new Answer(animalQ2, "Woof");
+			Answer answer9 = new Answer(animalQ3, "Meow?");
+			
 			
 			qrepository.save(question1);
 			qrepository.save(question2);
@@ -75,6 +79,9 @@ public class KyselyAppApplication {
 			arepository.save(answer4);
 			arepository.save(answer5);
 			arepository.save(answer6);
+			arepository.save(answer7);
+			arepository.save(answer8);
+			arepository.save(answer9);
 			
 			log.info("fetch all surveys");
 			for (Survey survey : srepository.findAll()) {
