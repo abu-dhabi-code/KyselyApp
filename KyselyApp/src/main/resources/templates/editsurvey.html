@@ -26,14 +26,23 @@
 			action="#"
 		>
 			<input type="hidden" th:field="*{id}" readonly="readonly" />
-			<select id="questionTypeSelect" th:field="*{questionType}">
-				<option value="text">Text</option>
-				<option value="longtext">Long Text</option>
-				<option value="radio">Radio</option>
-				<option value="multiselect">Multiselect</option>
-			</select>
-			<label for="questionTypeSelect">Question type</label>
-			<input class="btn-primary" type="submit" value="Add new question" />
+			
+			<div class="flex flex-col justify-center items-center gap-4">
+				<label>
+					Question type
+					<select id="questionTypeSelect" class="bg-teal-blue rounded text-black" th:field="*{questionType}">
+						<option value="text">Text</option>
+						<option value="longtext">Long Text</option>
+						<option value="radio">Radio</option>
+						<option value="multiselect">Multiselect</option>
+					</select>
+				</label>
+				<label class="hidden" id="optionCountSelection">
+					Number of options
+					<input type="number" th:field="*{optionCount}" class="bg-teal-blue rounded text-black w-12 px-1" />
+				</label>
+				<input class="btn-primary" type="submit" value="Add new question" />
+			</div>
 		</form>
 		
 		<form 
@@ -110,7 +119,16 @@
 			
 		}
 		
-		
+		const optionCountSelectionLabel = document.querySelector("#optionCountSelection");
+		const optionCountInput = optionCountSelectionLabel.children[0];
+		const questionTypeSelect = document.querySelector("#questionTypeSelect");
+		questionTypeSelect.addEventListener("change", e => {
+			console.log(e);
+			if (e.target.value === "radio" || e.target.value === "multiselect")
+				optionCountSelectionLabel.classList.remove('hidden');
+			else
+				optionCountSelectionLabel.classList.add('hidden');
+		});
 		
 	</script>
 </body>
