@@ -46,7 +46,9 @@ function Result({ result }){
                                   mr-6 ml-auto 
                                   bg-tea-green text-dk-byzantium
                                   rounded-full 
-                                  w-8 h-8"
+                                  w-8 h-8
+                                  select-none"
+                                  title="Amount of times answer was given"
                                 >
                                   {count}
                                 </p>
