@@ -54,5 +54,20 @@ export async function sendAnswers(answers) {
 export async function getAnswers(id) {
     const data = await (await fetch(`${API_URL}v1/surveys/${id}/answers`)).json();
 
+    //loop through each question to format answers
+    for (const question of data.questions) {
+        const formattedAnswers = [];
+        for (const answer of question.answers) {
+            const answerText = answer.answer;
+            if (formattedAnswers.filter(a => a.answer === answerText).length > 0) {
+                formattedAnswers.find(a => a.answer === answerText).count++;
+            } else {
+                formattedAnswers.push({answer: answerText, count: 1});
+            }
+        }
+        console.log("formatted:", formattedAnswers)
+        question.answers = formattedAnswers;
+    }
+    console.log(data);
     return data;
 }

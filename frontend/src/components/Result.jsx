@@ -50,7 +50,7 @@ function Result({ result }){
                                   select-none"
                                   title="Amount of times answer was given"
                                 >
-                                  {count}
+                                  {a.count}
                                 </p>
                             </div>
                             ))
