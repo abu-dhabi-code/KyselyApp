@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getAnswers } from "../utils/api";
 import Result from "../components/Result";
 
@@ -65,7 +66,7 @@ function Results() {
               ))}
               </div>
             </div>
-            
+            <Link className="btn-primary mt-auto mb-12" to="/">Go back home</Link>
         </div>
     );
 }
