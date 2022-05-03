@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAnswers } from "../utils/api";
+import Result from "../components/Result";
 
 function Results() {
     const id = parseInt(useParams().id);
@@ -35,19 +36,16 @@ function Results() {
             <div className="flex flex-col items-stretch gap-4 justify-evenly">
               <h2>{survey?.surveyName}</h2>
               <p>{survey?.description}</p>
-              <table>
+              <div className="flex flex-col items-center">
               {results.map(r => (
-                <div key={r.id+r.question} className="flex gap-4 justify-start w-full">
-                  <th>{r.question}</th>
-                  <div className="flex gap-4 justify-start w-full">
-                    {r.answers.map(a => (
-                      <tr key={a.id+a.answer}>{a.answer}</tr>
-                    ))}
-                  </div>
+                <div key={r.id+r.question} className="flex gap-4 justify-center w-full">
+                  <Result
+                    result={r}
+                  />
                 </div>  
                 
               ))}
-              </table>
+              </div>
             </div>
             
         </div>
