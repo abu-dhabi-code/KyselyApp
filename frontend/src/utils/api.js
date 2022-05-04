@@ -52,11 +52,13 @@ export async function sendAnswers(answers) {
 }
 
 export async function getAnswers(id) {
+    //fetch data from db
     const data = await (await fetch(`${API_URL}v1/surveys/${id}/answers`)).json();
 
     //loop through each question to format answers
     for (const question of data.questions) {
         const formattedAnswers = [];
+
         for (const answer of question.answers) {
             const answerText = answer.answer;
             if (formattedAnswers.filter(a => a.answer === answerText).length > 0) {
@@ -65,7 +67,8 @@ export async function getAnswers(id) {
                 formattedAnswers.push({answer: answerText, count: 1});
             }
         }
-        console.log("formatted:", formattedAnswers)
+        //sort the array by count and then reverse the list to have the most frequent answer at the top
+        formattedAnswers.sort((a, b) => { a.count - b.count }).reverse();
         question.answers = formattedAnswers;
     }
     console.log(data);
