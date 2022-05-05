@@ -68,7 +68,7 @@ export async function getAnswers(id) {
             }
         }
         //sort the array by count and then reverse the list to have the most frequent answer at the top
-        formattedAnswers.sort((a, b) => { a.count - b.count }).reverse();
+        formattedAnswers.sort((a, b) => b.count - a.count );
         question.answers = formattedAnswers;
     }
     console.log(data);
