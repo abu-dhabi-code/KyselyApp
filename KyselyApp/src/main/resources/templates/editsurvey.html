@@ -3,6 +3,8 @@
 <head>
     <title>Edit survey</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    	<link rel="stylesheet" href="/assets/index.css">
 </head>
 <body class="bg-dk-byzantium text-lt-yellow">
@@ -41,7 +43,7 @@
 					Number of options
 					<input type="number" th:field="*{optionCount}" class="bg-teal-blue rounded text-black w-12 px-1" />
 				</label>
-				<input class="btn-primary" type="submit" value="Add new question" />
+				<input class="btn-primary" id="addNewQuestionButton" type="submit" value="Add new question" />
 			</div>
 		</form>
 		
@@ -123,11 +125,9 @@
 		const addNewQuestionBtn = document.querySelector("#addNewQuestionButton");
 		
 		const goSave = document.createElement("input");
-		
 		goSave.type="button";
 		goSave.value="Add new question";
 		goSave.classList.add("btn-primary");
-		
 		goSave.addEventListener("click", e => {
 			console.log("GO SAVE!!")
 			const errorToast = document.querySelector("#error");
@@ -137,7 +137,7 @@
 		for (const input of inputFields){
 			input.addEventListener("change", e => {
 				console.log(e);
-				addNewQuestionBtn.replaceWith(goSave);
+				addNewQuestionBtn?.replaceWith(goSave);
 			});
 			
 			
