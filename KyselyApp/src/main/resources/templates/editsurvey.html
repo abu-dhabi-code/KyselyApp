@@ -109,13 +109,17 @@
 			if(result)
 				window.location.href = "/";
 		}
-		// close the div in 5 secs
-		window.setTimeout("closeSavedDiv();", 5000);
+		// Close the "Quesitons saved" toast in 15 secs
+		window.setTimeout("closeSavedDiv();", 15000);
+		
+		const savedToast = document.querySelector("#saved");
 
 		function closeSavedDiv(){
-			const savedToast = document.querySelector("#saved");
 			savedToast?.remove();
 		}
+		
+		// Or on click
+		savedToast?.addEventListener("click", closeSavedDiv);
 		
 		const inputFields = document.querySelectorAll("#question");
 		
