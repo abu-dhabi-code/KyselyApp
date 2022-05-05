@@ -66,25 +66,27 @@
 					th:field="*{questions[__${stat.index}__].name}" 
 					id="question"
 				/>
-				<div class="flex flex-col gap-4 pl-12" th:each="option, option_stat : ${question.options}">
-					<span>Choice: </span>
-					<input 
-						type="hidden" 
-						th:field="*{questions[__${stat.index}__].options[__${option_stat.index}__].id}" 
-						readonly="readonly" 
-					/>
-					<input 
-						type="hidden" 
-						th:field="*{questions[__${stat.index}__].options[__${option_stat.index}__].question.id}" 
-						readonly="readonly" 
-					/>
-					<input 
-						class="bg-white text-black px-2 py-1 mx-5 rounded textbox-width-sm"
-						type="text"
-						placeholder="Answer option" 
-						th:field="*{questions[__${stat.index}__].options[__${option_stat.index}__].option}" 
-						id="question"
-					/>
+				<div th:if="${question.options.size() > 0}" class="flex flex-col gap-4 py-6">
+					<div class="flex flex-row gap-2 pl-6" th:each="option, option_stat : ${question.options}">
+						<span>Option <span th:text="${option_stat.index + 1}"></span>: </span>
+						<input 
+							type="hidden" 
+							th:field="*{questions[__${stat.index}__].options[__${option_stat.index}__].id}" 
+							readonly="readonly" 
+						/>
+						<input 
+							type="hidden" 
+							th:field="*{questions[__${stat.index}__].options[__${option_stat.index}__].question.id}" 
+							readonly="readonly" 
+						/>
+						<input 
+							class="bg-white text-black px-2 py-1 mx-5 rounded textbox-width-sm"
+							type="text"
+							placeholder="Answer option" 
+							th:field="*{questions[__${stat.index}__].options[__${option_stat.index}__].option}" 
+							id="question"
+						/>
+					</div>
 				</div>
 			</div>
 	
