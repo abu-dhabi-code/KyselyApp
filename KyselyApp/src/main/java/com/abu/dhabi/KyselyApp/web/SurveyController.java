@@ -74,6 +74,8 @@ public class SurveyController {
 			for (var question : survey.getQuestions()) {
 				question.setSurvey(savedSurvey);
 				var savedQuestion = questionRepository.save(question);
+				// If the question type has options save them as well
+				// FIXME: This code could be arranged better
 				if (QuestionType.hasOptions(savedQuestion.getType())) {
 					for (var option : question.getOptions()) {
 						System.out.println(option);

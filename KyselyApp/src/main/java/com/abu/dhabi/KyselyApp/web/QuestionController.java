@@ -27,7 +27,6 @@ public class QuestionController {
 	private OptionRepository optionRepository;
 	
 	// Adding a question to the survey
-	// Check the survey ID and and to the questionlist in the id
 	@RequestMapping(value="/addquestion", method = RequestMethod.POST)
 	public String addQuestion(@ModelAttribute AddQuestion addQuestion) {
 		var survey = surveyRepository.findById(addQuestion.getId()).get();
@@ -39,7 +38,10 @@ public class QuestionController {
 		var newQuestion = new Question(survey, "", questionType);
 		newQuestion = questionRepository.save(newQuestion);
 		
+		// If the created question is supposed to have options, we create them here
+		// This is needed to stop options from being added to questions that don't use them
 		if (QuestionType.hasOptions(newQuestion.getType())) {
+			// Amount of options to add is gotten from the request object
 			var optionCount = addQuestion.getOptionCount();
 			for (int i = 0; i < optionCount; i++) {
 				var newOption = new Option(newQuestion, "");
@@ -55,11 +57,9 @@ public class QuestionController {
 	
 	@RequestMapping(value="/deletequestion/{id}", method = RequestMethod.POST)
 	public String deleteQuestion(@PathVariable("id") Long id) {
-		//TODO: delete questions and everything linked to the questions
+		//TODO: Delete questions and everything linked to the questions.
+		//TODO: ie. answers, and if the QuestionType has them, options.
 		
-		// Redirect the user back to the survey's edit page
-		// The new empty question should appear on there now
-		//return String.format("redirect:/editsurvey/%d", survey.getId());
 		return "yeet";
 	}
 

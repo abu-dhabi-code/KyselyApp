@@ -109,7 +109,8 @@
 			if(result)
 				window.location.href = "/";
 		}
-		// Close the "Quesitons saved" toast in 15 secs
+		
+		// Close the "Questions saved" toast in 15 secs
 		window.setTimeout("closeSavedDiv();", 15000);
 		
 		const savedToast = document.querySelector("#saved");
@@ -121,6 +122,12 @@
 		// Or on click
 		savedToast?.addEventListener("click", closeSavedDiv);
 		
+		
+		///
+		/// If the value of any of the input boxes changes
+		/// we remove the submit button from the addQuestion form,
+		/// replacing it with a button that tells the user to save
+		///
 		const inputFields = document.querySelectorAll("#question");
 		
 		const addNewQuestionBtn = document.querySelector("#addNewQuestionButton");
@@ -144,6 +151,10 @@
 			
 		}
 		
+		
+		///
+		///	Only show the input box for answer option count if the selected QuestionType supports them
+		///
 		const optionCountSelectionLabel = document.querySelector("#optionCountSelection");
 		const optionCountInput = optionCountSelectionLabel.children[0];
 		const questionTypeSelect = document.querySelector("#questionTypeSelect");

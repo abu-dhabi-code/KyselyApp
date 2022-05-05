@@ -10,6 +10,7 @@ public final class QuestionType {
 		Multiselect,
 	}
 	
+	// Return true for any QuestionTypes that support options
 	public static boolean hasOptions(Type type) {
 		switch(type) {
 		case Radio: return true;
