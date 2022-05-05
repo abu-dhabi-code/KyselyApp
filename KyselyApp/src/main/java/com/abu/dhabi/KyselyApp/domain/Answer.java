@@ -9,7 +9,6 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.lang.NonNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -39,6 +38,13 @@ public class Answer {
 		super();
 		this.question = question;
 		this.answer = answer;
+	}
+	
+	public Answer(Question question, String answer, QuestionType.Type type) {
+		super();
+		this.question = question;
+		this.answer = answer;
+		this.type = type;
 	}
 
 	public Long getId() {
