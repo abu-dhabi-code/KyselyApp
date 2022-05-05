@@ -45,12 +45,12 @@
   }
 
   .textbox-width {
-    @apply w-[38rem]
+    @apply w-[20rem] md:w-[38rem]
   }
 
   
   .textbox-width-sm {
-    @apply w-[19rem]
+    @apply w-[12rem] md:w-[19rem]
   }
 
   

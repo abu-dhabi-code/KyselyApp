@@ -15,7 +15,7 @@ function App() {
           to={"/"}>
             KyselyApp
         </Link>
-        <a href="/addsurvey" className="btn-primary ml-auto mr-4">Create survey</a>
+        <a href="/addsurvey" className="btn-primary ml-auto mr-0 sm:mr-4">Create survey</a>
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
