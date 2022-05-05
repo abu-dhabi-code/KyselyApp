@@ -32,20 +32,21 @@ public class QuestionController {
 	public String addQuestion(@ModelAttribute AddQuestion addQuestion) {
 		var survey = surveyRepository.findById(addQuestion.getId()).get();
 		
-		var questionType = QuestionType.fromString(addQuestion.getQuestionType());
-		var optionCount = addQuestion.getOptionCount();
-		
+		var questionType = QuestionType.fromString(addQuestion.getQuestionType());	
 		
 		// We'll take the survey object from the form
 		// Create new question for the survey and save it
 		var newQuestion = new Question(survey, "", questionType);
 		newQuestion = questionRepository.save(newQuestion);
 		
-		for (int i = 0; i < optionCount; i++) {
-			var newOption = new Option(newQuestion, "");
-			optionRepository.save(newOption);
+		if (QuestionType.hasOptions(newQuestion.getType())) {
+			var optionCount = addQuestion.getOptionCount();
+			for (int i = 0; i < optionCount; i++) {
+				var newOption = new Option(newQuestion, "");
+				optionRepository.save(newOption);
+			}		
 		}
-		
+
 		
 		// Redirect the user back to the survey's edit page
 		// The new empty question should appear on there now
