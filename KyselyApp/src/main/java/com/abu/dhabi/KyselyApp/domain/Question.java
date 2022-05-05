@@ -34,6 +34,9 @@ public class Question {
 	@JsonIgnoreProperties("question")
 	private List<Answer> answers;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Option> options;
+	
 	public Question() {
 		super();
 	}
@@ -88,6 +91,14 @@ public class Question {
 	
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
+	}
+	
+	public List<Option> getOptions() {
+		return this.options;
+	}
+	
+	public void setOptions(List<Option> options) {
+		this.options = options;
 	}
 
 

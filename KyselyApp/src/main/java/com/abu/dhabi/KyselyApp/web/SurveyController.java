@@ -1,5 +1,6 @@
 package com.abu.dhabi.KyselyApp.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.abu.dhabi.KyselyApp.domain.Option;
+import com.abu.dhabi.KyselyApp.domain.OptionRepository;
 import com.abu.dhabi.KyselyApp.domain.Question;
 import com.abu.dhabi.KyselyApp.domain.QuestionRepository;
 import com.abu.dhabi.KyselyApp.domain.QuestionType;
@@ -25,6 +28,9 @@ public class SurveyController {
 	
 	@Autowired
 	private QuestionRepository questionRepository;
+	
+	@Autowired
+	private OptionRepository optionRepository;
 	
 
 
@@ -84,11 +90,21 @@ public class SurveyController {
 		var survey = surveyRepository.findById(addQuestion.getId()).get();
 		
 		var questionType = QuestionType.fromString(addQuestion.getQuestionType());
+		var optionCount = addQuestion.getOptionCount();
+		
+		List<Option> newOptions = new ArrayList<Option>();
+		for (int i = 0; i < optionCount; i++) {
+			var newOption = new Option("");
+			newOption = optionRepository.save(newOption);
+			newOptions.add(newOption);
+		}
 		
 		// We'll take the survey object from the form
 		// Create new question for the survey and save it
 		var newQuestion = new Question(survey, "", questionType);
-		questionRepository.save(newQuestion);
+		newQuestion.setOptions(newOptions);
+		
+		newQuestion = questionRepository.save(newQuestion);
 		
 		// Redirect the user back to the survey's edit page
 		// The new empty question should appear on there now
