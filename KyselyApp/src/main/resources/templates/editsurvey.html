@@ -65,15 +65,17 @@
 					th:field="*{questions[__${stat.index}__].name}" 
 					id="question"
 				/>
-				<div class="flex flex-col gap-4" th:each="options, option_stat : ${question.options}">
-					<span>Choice: </span>
-					<input 
-						class="bg-white text-black px-2 py-1 mx-5 rounded textbox-width"
-						type="text"
-						placeholder="Answer option" 
-						th:field="*{questions[__${stat.index}__].options[__${option_stat.index}__]}" 
-						id="question"
-					/>
+				<div th:if="*{questions[__${stat.index}__].type != 0}">
+					<div class="flex flex-col gap-4" th:each="options, option_stat : ${question.options}">
+						<span>Choice: </span>
+						<input 
+							class="bg-white text-black px-2 py-1 mx-5 rounded textbox-width"
+							type="text"
+							placeholder="Answer option" 
+							th:field="*{questions[__${stat.index}__].options[__${option_stat.index}__]}" 
+							id="question"
+						/>
+					</div>
 				</div>
 			</div>
 	

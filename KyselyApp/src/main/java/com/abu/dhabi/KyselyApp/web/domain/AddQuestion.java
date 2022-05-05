@@ -16,7 +16,7 @@ public class AddQuestion {
 	private String questionType;
 	
 	@JsonProperty("optionCount")
-	private Long optionCount = (long) 1;
+	private Long optionCount = (long) 0;
 	
 	
 	
