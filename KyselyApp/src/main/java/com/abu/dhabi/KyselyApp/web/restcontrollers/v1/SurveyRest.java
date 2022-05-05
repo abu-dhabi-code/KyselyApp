@@ -66,8 +66,8 @@ public class SurveyRest {
     }
 	
 	//REST Home Page
-	@RequestMapping(value= "/resthome", method = RequestMethod.GET)
+	@RequestMapping(value= "/", method = RequestMethod.GET)
 	public String RestHome(Model model){
-	return "resthome";
+		return "resthome";
 	}
 }

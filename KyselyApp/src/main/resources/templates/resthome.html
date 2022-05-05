@@ -65,7 +65,7 @@
 </code></pre>
 </div>
 		<h2 class="text-2xl underline">Survey by Id</h2>
-		<p>GET <a href="/api/v1/surveys/{id}" class="text-blue-600 hover:text-purple-600">/api/v1/surveys/{id}</a></p>
+		<p>GET <a href="/api/v1/surveys/1" class="text-blue-600 hover:text-purple-600">/api/v1/surveys/{id}</a></p>
 		<p class="font-bold">JSON Example: </p>
 		<div class="bg-teal-blue w-full flex flex-row items-center justify-center pd-6">
 		<pre><code>
@@ -129,6 +129,76 @@
 		"type": "Text"
 		}]
 		
+</code></pre>
+</div>
+		<h2 class="text-2xl underline">Answers by Id</h2>
+		<p>GET <a href="/api/v1/surveys/1/answers" class="text-blue-600 hover:text-purple-600">/api/v1/surveys/{id}/answers</a></p>
+		<p class="font-bold">JSON Example: </p>
+		<div class="bg-teal-blue w-full flex flex-row items-center justify-center pd-6">
+		<pre><code>
+		[{
+			"id":1,"surveyName":"Asiakastyytyväisyyskysely",
+			"description":"Kerro mielipiteesi!",
+			"questions":
+			[{
+				"id":1,"name":"Kuinka usein vierailet ravintola Pääraiteessa?",
+				 "answers": [
+			        {
+			          "id": 1,
+			          "answer": "Yes",
+			          "type": "Text"
+			        },
+			        {
+			          "id": 2,
+			          "answer": "No",
+			          "type": "Text"
+			        },
+			        {
+			          "id": 3,
+			          "answer": "Maybe",
+			          "type": "Text"
+			        }
+			      ],
+				"type":"Text"
+				},
+				{
+				"id":2,
+				"name":"Kuinka usein nautit aamiaisen ravintola Pääraiteessa?",
+				"answers": [],
+				"type":"Text"
+				},
+				{
+				"id":3,
+				"name":"Kuinka usein ostat lounaan yhteydessä myös jälkiruoan?",
+				"answers": [],
+				"type":"Text"
+				},
+				{
+				"id":4,
+				"name":"Miten tyytyväinen olet ravintolan aamiaiseen?",
+				"answers": [],
+				"type":"Text"
+				},
+				{
+				"id":5,
+				"name":"Miten tyytyväinen olet ravintolan lounaaseen?",
+				"answers": [],
+				"type":"Text"
+				},
+				{
+				"id":6,
+				"name":"Millaisia ruokia kaipaat lounasvalikoimaan?",
+				"answers": [],
+				"type":"Text"
+				},
+				{
+				"id":7,
+				"name":"Miten hyvin ravintolassa on huomioitu eri ruokavaliot ja allergiat?",
+				"answers": [],
+				"type":"Text"
+			}]
+		}]
+  
 </code></pre>
 </div>
 			
