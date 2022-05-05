@@ -39,6 +39,13 @@ public class Answer {
 		this.question = question;
 		this.answer = answer;
 	}
+	
+	public Answer(Question question, String answer, QuestionType.Type type) {
+		super();
+		this.question = question;
+		this.answer = answer;
+		this.type = type;
+	}
 
 	public Long getId() {
 		return id;

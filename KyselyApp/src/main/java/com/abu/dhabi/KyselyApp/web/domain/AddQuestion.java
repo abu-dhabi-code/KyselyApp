@@ -15,6 +15,9 @@ public class AddQuestion {
 	@JsonProperty("questionType")
 	private String questionType;
 	
+	@JsonProperty("optionCount")
+	private Long optionCount = (long) 0;
+	
 	
 	
 	public AddQuestion(Long id, String questionType) {
@@ -37,6 +40,14 @@ public class AddQuestion {
 
 	public void setQuestionType(String questionType) {
 		this.questionType = questionType;
+	}
+	
+	public Long getOptionCount() {
+		return this.optionCount;
+	}
+	
+	public void setOptionCount(Long optionCount) {
+		this.optionCount = optionCount;
 	}
 
 	public AddQuestion() {
