@@ -83,37 +83,7 @@ public class SurveyController {
 
     }
 	
-<<<<<<< HEAD
-=======
-	// Adding a question to the survey
-	// Check the survey ID and and to the questionlist in the id
-	@RequestMapping(value="/addquestion", method = RequestMethod.POST)
-	public String addQuestion(@ModelAttribute AddQuestion addQuestion) {
-		var survey = surveyRepository.findById(addQuestion.getId()).get();
-		
-		var questionType = QuestionType.fromString(addQuestion.getQuestionType());
-		var optionCount = addQuestion.getOptionCount();
-		
-		List<Option> newOptions = new ArrayList<Option>();
-		for (int i = 0; i < optionCount; i++) {
-			var newOption = new Option("");
-			newOption = optionRepository.save(newOption);
-			newOptions.add(newOption);
-		}
-		
-		// We'll take the survey object from the form
-		// Create new question for the survey and save it
-		var newQuestion = new Question(survey, "", questionType);
-		newQuestion.setOptions(newOptions);
-		
-		newQuestion = questionRepository.save(newQuestion);
-		
-		// Redirect the user back to the survey's edit page
-		// The new empty question should appear on there now
-		return String.format("redirect:/editsurvey/%d", survey.getId());
-	}
-	
->>>>>>> 760ceb6674739a53a4e211b2b7c289734b330e4b
+
 	// Survey list where you can choose which survey you want to edit
 	@RequestMapping(value = "/surveylist", method = RequestMethod.GET)
 	public String surveyList(Model model) {
