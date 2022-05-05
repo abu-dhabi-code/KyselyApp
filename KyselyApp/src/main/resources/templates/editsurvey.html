@@ -10,11 +10,11 @@
 		<h1 class="text-2xl my-2">Edit survey</h1>
 		<h1 class="text-xl mb-3" th:text="${survey.surveyName}"></h1>
 		<h2 class="text-lg mb-3" th:text="${survey.description}"></h2>
-		<div th:if="${saved}" class="textbox-saved" id="saved" >
+		<div th:if="${saved}" class="textbox-saved my-2" id="saved" >
 			<h1 class="text-xl mb-3">Questions saved!</h1>
 		</div>
 		
-		<div class="textbox-error invisible" id="error" >
+		<div class="textbox-error hidden my-2" id="error" >
 			<h1 class="text-xl mb-3">Save the survey before adding new questions!</h1>
 		</div>
 		
@@ -128,7 +128,7 @@
 		goSave.addEventListener("click", e => {
 			console.log("GO SAVE!!")
 			const errorToast = document.querySelector("#error");
-			errorToast.classList.remove('invisible');
+			errorToast.classList.remove('hidden');
 		});
 		
 		for (const input of inputFields){
