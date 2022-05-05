@@ -70,8 +70,16 @@ public class SurveyController {
 		// Loop through all of the questions
 		// and save them to the repository
 		if (survey.getQuestions() != null ) {
-			for (var question : survey.getQuestions())
-				questionRepository.save(question);
+			for (var question : survey.getQuestions()) {
+				question.setSurvey(savedSurvey);
+				var savedQuestion = questionRepository.save(question);
+				if (QuestionType.hasOptions(savedQuestion.getType())) {
+					for (var option : question.getOptions()) {
+						System.out.println(option);
+						optionRepository.save(option);
+					}
+				}
+			}
 		} else {
 			var newQuestion = new Question(savedSurvey, "", QuestionType.Type.Text);
 			questionRepository.save(newQuestion);

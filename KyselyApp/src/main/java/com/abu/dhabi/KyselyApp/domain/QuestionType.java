@@ -10,6 +10,14 @@ public final class QuestionType {
 		Multiselect,
 	}
 	
+	public static boolean hasOptions(Type type) {
+		switch(type) {
+		case Radio: return true;
+		case Multiselect: return true;
+		default: return false;
+		}
+	}
+	
 	public static Type fromString(String name) {
 		switch(name) {
 		case "text":

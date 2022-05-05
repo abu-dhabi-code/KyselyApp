@@ -49,6 +49,9 @@
   }
 
   
+  .textbox-width-sm {
+    @apply w-[19rem]
+  }
 
   
 }

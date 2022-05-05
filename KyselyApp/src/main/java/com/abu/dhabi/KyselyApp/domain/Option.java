@@ -42,10 +42,12 @@ public class Option {
 		super();
 	}
 	
-	public Option(String option) {
+	public Option(Question question, String option) {
 		super();
+		this.question = question;
 		this.option = option;
 	}
+
 
 
 	public Long getId() {
@@ -65,6 +67,13 @@ public class Option {
 
 	public void setOption(String option) {
 		this.option = option;
+	}
+	
+
+
+	@Override
+	public String toString() {
+		return "Option [id=" + id + ", option=" + option + ", question=" + question.getName() + "]";
 	}
 	
 }

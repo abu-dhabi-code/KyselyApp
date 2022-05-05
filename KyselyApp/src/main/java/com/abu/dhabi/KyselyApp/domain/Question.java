@@ -42,8 +42,8 @@ public class Question {
 		super();
 	}
 
-	// Text is the default question type for now
-	private QuestionType.Type type = QuestionType.Type.Text;
+	@NonNull
+	private QuestionType.Type type;
 
 	public Question(Survey survey, String question, QuestionType.Type type) {
 		super();
