@@ -114,7 +114,8 @@
 		window.setTimeout("closeSavedDiv();", 5000);
 
 		function closeSavedDiv(){
-		document.getElementById("saved").style.display=" none";
+			const savedToast = document.querySelector("#saved");
+			savedToast?.remove();
 		}
 		
 		const inputFields = document.querySelectorAll("#question");
