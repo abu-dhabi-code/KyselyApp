@@ -8,10 +8,6 @@ function Result({ result }){
 
     const question = result.question;
 
-    const count = Math.floor(Math.random() * 10);
-
-    
-
     return (
         <div
             className="bg-sweet-brown 
