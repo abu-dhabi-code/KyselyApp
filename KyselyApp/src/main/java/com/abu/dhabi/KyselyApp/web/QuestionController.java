@@ -73,8 +73,10 @@ public class QuestionController {
 			answerRepository.delete(answer);
 		}
 		//delete options
-		for (var option : question.getOptions()) {
-			optionRepository.delete(option);
+		if (QuestionType.hasOptions(question.getType())) {
+			for (var option : question.getOptions()) {
+				optionRepository.delete(option);
+			}
 		}
 		//delete the question itself
 		questionRepository.delete(question);

@@ -26,9 +26,6 @@ public class Answer {
 	@NonNull
 	private Question question;
 	
-	// Text is default answer type for now
-	private QuestionType.Type type = QuestionType.Type.Text;
-	
 	public Answer() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -38,13 +35,6 @@ public class Answer {
 		super();
 		this.question = question;
 		this.answer = answer;
-	}
-	
-	public Answer(Question question, String answer, QuestionType.Type type) {
-		super();
-		this.question = question;
-		this.answer = answer;
-		this.type = type;
 	}
 
 	public Long getId() {
@@ -59,10 +49,6 @@ public class Answer {
 		return question;
 	}
 
-	public QuestionType.Type getType() {
-		return type;
-	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -75,13 +61,9 @@ public class Answer {
 		this.question = question;
 	}
 
-	public void setType(QuestionType.Type type) {
-		this.type = type;
-	}
-
 	@Override
 	public String toString() {
-		return "Answer [id=" + id + ", answer=" + answer + ", question=" + question + ", type=" + type + "]";
+		return "Answer [id=" + id + ", answer=" + answer + ", question=" + question + "]";
 	}
 	
 	
