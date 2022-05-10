@@ -4,19 +4,19 @@ function Question({ question, key, answerState }) {
 
   const [answers, setAnswers] = answerState;
 
-  function getAnswerByQuestionId(id) {
-    const results = answers.filter(a => a.id === id);
+  function getAnswerByQuestionId() {
+    const results = answers.filter(a => a.id === question.id);
 
     return results.length > 0 ? results[0].value : '';
   }
 
-  function updateAnswerByQuestionId(newValue, id) {
+  function updateAnswerByQuestionId(newValue) {
     console.log(answers);
     const modAnswers = [...answers];
 
     switch (question.type) {
       case "Multiselect":
-        const a = modAnswers.find(a => a.id === id);
+        const a = modAnswers.find(a => a.id === question.id);
         if (a.value) {
           const values = a.value;
           const idx = values.indexOf(newValue)
@@ -31,7 +31,7 @@ function Question({ question, key, answerState }) {
         break;
 
       default:
-        modAnswers.find(a => a.id === id).value = newValue;
+        modAnswers.find(a => a.id === question.id).value = newValue;
         break;
     }
 
@@ -45,8 +45,8 @@ function Question({ question, key, answerState }) {
     setAnswers(modAnswers);
   }
 
-  function isCheckboxValueInAnswers(option, id) {
-    const a = answers.find(a => a.id === id);
+  function isCheckboxValueInAnswers(option) {
+    const a = answers.find(a => a.id === question.id);
     if(!a)
       return false;
 
@@ -65,7 +65,7 @@ function Question({ question, key, answerState }) {
             placeholder="Answer"
             className="bg-white text-black px-2 mx-5 rounded textbox-width"
             value={getAnswerByQuestionId(question.id)}
-            onChange={e => updateAnswerByQuestionId(e.currentTarget.value, question.id)}
+            onChange={e => updateAnswerByQuestionId(e.currentTarget.value)}
           />
         )
       case "Radio":
@@ -80,7 +80,7 @@ function Question({ question, key, answerState }) {
                   type="radio"
                   className="bg-white text-black px-2 mx-5 rounded"
 
-                  onChange={e => updateAnswerByQuestionId(o.option, question.id)}
+                  onChange={e => updateAnswerByQuestionId(o.option)}
                 />
               </label>
             ))}
@@ -98,8 +98,8 @@ function Question({ question, key, answerState }) {
                   type="checkbox"
                   className="bg-white text-black px-2 mx-5 rounded"
 
-                  checked={isCheckboxValueInAnswers(o.option, question.id)}
-                  onChange={e => updateAnswerByQuestionId(o.option, question.id)}
+                  checked={isCheckboxValueInAnswers(o.option)}
+                  onChange={e => updateAnswerByQuestionId(o.option)}
                 />
               </label>
             ))}
@@ -112,7 +112,7 @@ function Question({ question, key, answerState }) {
             placeholder="Answer"
             className="bg-white text-black px-2 mx-5 rounded textbox-width"
             value={getAnswerByQuestionId(question.id)}
-            onChange={e => updateAnswerByQuestionId(e.currentTarget.value, question.id)}
+            onChange={e => updateAnswerByQuestionId(e.currentTarget.value)}
           />
         )
     }
