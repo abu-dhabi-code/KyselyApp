@@ -61,13 +61,13 @@ export async function getAnswers(id) {
 
         for (const answer of question.answers) {
             const answerText = answer.answer;
-            if (formattedAnswers.filter(a => a.answer === answerText).length > 0) {
-                formattedAnswers.find(a => a.answer === answerText).count++;
+            if (formattedAnswers.filter(a => a.answer.toLowerCase() === answerText.toLowerCase()).length > 0) {
+                formattedAnswers.find(a => a.answer.toLowerCase() === answerText.toLowerCase()).count++;
             } else {
                 formattedAnswers.push({answer: answerText, count: 1});
             }
         }
-        //sort the array by count and then reverse the list to have the most frequent answer at the top
+        //sort the array by count in reverse
         formattedAnswers.sort((a, b) => b.count - a.count );
         question.answers = formattedAnswers;
     }

@@ -65,6 +65,7 @@
 					th:field="*{questions[__${stat.index}__].name}" 
 					id="question"
 				/>
+				<a th:href="@{/deletequestion/{id}(id=${question.id})}">Delete</a>
 				<div th:if="${question.options.size() > 0}" class="flex flex-col gap-4 py-6">
 					<div class="flex flex-row gap-2 pl-6" th:each="option, option_stat : ${question.options}">
 						<span>Option <span th:text="${option_stat.index + 1}"></span>: </span>

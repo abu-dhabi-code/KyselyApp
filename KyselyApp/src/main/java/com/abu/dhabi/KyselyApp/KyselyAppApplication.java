@@ -60,7 +60,7 @@ public class KyselyAppApplication {
 			Answer answer7 = new Answer(animalQ1, "yes");
 			Answer answer8 = new Answer(animalQ2, "Woof");
 			Answer answer9 = new Answer(animalQ3, "Meow?");
-			Answer answer10 = new Answer(animalQ1, "yes");
+			Answer answer10 = new Answer(animalQ1, "Yes");
 			
 			qrepository.save(question1);
 			qrepository.save(question2);

@@ -1,5 +1,7 @@
 package com.abu.dhabi.KyselyApp.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -7,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.abu.dhabi.KyselyApp.domain.Answer;
+import com.abu.dhabi.KyselyApp.domain.AnswerRepository;
 import com.abu.dhabi.KyselyApp.domain.Option;
 import com.abu.dhabi.KyselyApp.domain.OptionRepository;
 import com.abu.dhabi.KyselyApp.domain.Question;
@@ -25,6 +29,9 @@ public class QuestionController {
 	
 	@Autowired
 	private OptionRepository optionRepository;
+	
+	@Autowired
+	private AnswerRepository answerRepository;
 	
 	// Adding a question to the survey
 	@RequestMapping(value="/addquestion", method = RequestMethod.POST)
@@ -55,12 +62,24 @@ public class QuestionController {
 		return String.format("redirect:/editsurvey/%d", survey.getId());
 	}
 	
-	@RequestMapping(value="/deletequestion/{id}", method = RequestMethod.POST)
+	//deleting a question
+	@RequestMapping(value="/deletequestion/{id}", method = RequestMethod.GET)
 	public String deleteQuestion(@PathVariable("id") Long id) {
-		//TODO: Delete questions and everything linked to the questions.
-		//TODO: ie. answers, and if the QuestionType has them, options.
+		var question = questionRepository.findById(id).get();
+		var survey = question.getSurvey();
 		
-		return "yeet";
+		//delete answers
+		for (var answer : question.getAnswers()) {
+			answerRepository.delete(answer);
+		}
+		//delete options
+		for (var option : question.getOptions()) {
+			optionRepository.delete(option);
+		}
+		//delete the question itself
+		questionRepository.delete(question);
+		
+		return String.format("redirect:/editsurvey/%d", survey.getId());
 	}
 
 }
