@@ -20,6 +20,67 @@ function Question({ question, key, answerState }) {
 
     }
 
+    function getAnswerComponent(question) {
+        console.log(question.type)
+        switch(question.type) {
+            case "LongText":
+                return(
+                    <textarea
+                        placeholder="Answer"
+                        className="bg-white text-black px-2 mx-5 rounded textbox-width"
+                        value={getAnswerByQuestionId(question.id)}
+                        onChange={e => updateAnswerByQuestionId(e.currentTarget.value, question.id)}
+                    />  
+                )
+                case "Radio":
+                    return (
+                        <div className="flex flex-col gap-4 w-full">
+                        {question.options.map(o => (
+                        <label>
+                            {o.option}
+                            <input 
+                                name={question.id + question.question}
+                                key={o.id + o.option}
+                                type="radio"
+                                className="bg-white text-black px-2 mx-5 rounded"
+                                
+                                onChange={e => updateAnswerByQuestionId(o.option, question.id)}
+                            /> 
+                        </label>
+                    ))}
+                    </div>
+                    )
+                    case "Multiselect":
+                        return (
+                            <div className="flex flex-col gap-4 w-full">
+                            {question.options.map(o => (
+                            <label>
+                                {o.option}
+                                <input 
+                                    name={question.id + question.question}
+                                    key={o.id + o.option}
+                                    type="checkbox"
+                                    className="bg-white text-black px-2 mx-5 rounded"
+                                    
+                                    onChange={e => console.log(e)}
+                                /> 
+                            </label>
+                        ))}
+                        </div>
+                        )
+            default: 
+                return(
+                    <input
+                        type="text"
+                        placeholder="Answer"
+                        className="bg-white text-black px-2 mx-5 rounded textbox-width"
+                        value={getAnswerByQuestionId(question.id)}
+                        onChange={e => updateAnswerByQuestionId(e.currentTarget.value, question.id)}
+                    />
+                    )
+        }
+    }
+
     return (
         <div
             key={key}
@@ -38,13 +99,9 @@ function Question({ question, key, answerState }) {
                 </h1>
             </div>
             <div className="bg-dk-byzantium text-center brightness-95 rounded-b w-full pb-2">
-                <input
-                    type="text"
-                    placeholder="Answer"
-                    className="bg-white text-black px-2 mx-5 rounded textbox-width"
-                    value={getAnswerByQuestionId(question.id)}
-                    onChange={e => updateAnswerByQuestionId(e.currentTarget.value, question.id)}
-                />
+                {
+                    getAnswerComponent(question)
+                }
             </div>
         </div>
     )
