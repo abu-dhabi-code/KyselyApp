@@ -1,5 +1,6 @@
 package com.abu.dhabi.KyselyApp;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,13 +9,13 @@ import org.springframework.context.annotation.Bean;
 
 import com.abu.dhabi.KyselyApp.domain.Answer;
 import com.abu.dhabi.KyselyApp.domain.AnswerRepository;
+import com.abu.dhabi.KyselyApp.domain.Option;
+import com.abu.dhabi.KyselyApp.domain.OptionRepository;
 import com.abu.dhabi.KyselyApp.domain.Question;
 import com.abu.dhabi.KyselyApp.domain.QuestionRepository;
 import com.abu.dhabi.KyselyApp.domain.QuestionType;
 import com.abu.dhabi.KyselyApp.domain.Survey;
 import com.abu.dhabi.KyselyApp.domain.SurveyRepository;
-
-import org.slf4j.Logger;
 
 
 @SpringBootApplication
@@ -27,7 +28,7 @@ public class KyselyAppApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner questionDemo(QuestionRepository qrepository, SurveyRepository srepository, AnswerRepository arepository) {
+	public CommandLineRunner questionDemo(QuestionRepository qrepository, SurveyRepository srepository, AnswerRepository arepository, OptionRepository orepository) {
 		return (args) -> {
 			log.info("save surveys");
 
@@ -37,9 +38,9 @@ public class KyselyAppApplication {
 			srepository.save(survey1);
 			srepository.save(survey2);
 			
-			Question question1 = new Question(survey1, "Kuinka usein vierailet ravintola Pääraiteessa?", QuestionType.Type.Text);
-			Question question2 = new Question(survey1, "Kuinka usein nautit aamiaisen ravintola Pääraiteessa?", QuestionType.Type.Text);
-			Question question3 = new Question(survey1, "Kuinka usein ostat lounaan yhteydessä myös jälkiruoan?", QuestionType.Type.Text);
+			Question question1 = new Question(survey1, "Kuinka usein vierailet ravintola Pääraiteessa?", QuestionType.Type.Radio);
+			Question question2 = new Question(survey1, "Kuinka usein nautit aamiaisen ravintola Pääraiteessa?", QuestionType.Type.Radio);
+			Question question3 = new Question(survey1, "Kuinka usein ostat lounaan yhteydessä myös jälkiruoan?", QuestionType.Type.Radio);
 			Question question4 = new Question(survey1, "Miten tyytyväinen olet ravintolan aamiaiseen?", QuestionType.Type.Text);
 			Question question5 = new Question(survey1, "Miten tyytyväinen olet ravintolan lounaaseen?", QuestionType.Type.Text);
 			Question question6 = new Question(survey1, "Millaisia ruokia kaipaat lounasvalikoimaan?", QuestionType.Type.Text);
@@ -50,9 +51,12 @@ public class KyselyAppApplication {
 			Question animalQ2 = new Question(survey2, "Are you a dog?", QuestionType.Type.Text);
 			Question animalQ3 = new Question(survey2, "Are you a cat?", QuestionType.Type.Text);
 			
-			Answer answer1 = new Answer(question1, "Yes");
-			Answer answer2 = new Answer(question1, "No");
-			Answer answer3 = new Answer(question1, "Maybe");
+			Option option1 = new Option(question1, "Kerran viikossa");
+			Option option2 = new Option(question1, "Joka päivä");
+			Option option3 = new Option(question1, "En koskaan");
+			Option option4 = new Option(question2, "Kerran viikossa");
+			Option option5 = new Option(question2, "Joka päivä");
+			Option option6 = new Option(question2, "En koskaan");
 			
 			Answer answer4 = new Answer(animalQ1, "no");
 			Answer answer5 = new Answer(animalQ2, "Woof");
@@ -61,6 +65,9 @@ public class KyselyAppApplication {
 			Answer answer8 = new Answer(animalQ2, "Woof");
 			Answer answer9 = new Answer(animalQ3, "Meow?");
 			Answer answer10 = new Answer(animalQ1, "Yes");
+			
+			
+			
 			
 			qrepository.save(question1);
 			qrepository.save(question2);
@@ -73,9 +80,7 @@ public class KyselyAppApplication {
 			qrepository.save(animalQ2);
 			qrepository.save(animalQ3);
 			
-			arepository.save(answer1);
-			arepository.save(answer2);
-			arepository.save(answer3);
+		
 			arepository.save(answer4);
 			arepository.save(answer5);
 			arepository.save(answer6);
@@ -83,6 +88,13 @@ public class KyselyAppApplication {
 			arepository.save(answer8);
 			arepository.save(answer9);
 			arepository.save(answer10);
+			
+			orepository.save(option1);
+			orepository.save(option2);
+			orepository.save(option3);
+			orepository.save(option4);
+			orepository.save(option5);
+			orepository.save(option6);
 			
 			log.info("fetch all surveys");
 			for (Survey survey : srepository.findAll()) {
