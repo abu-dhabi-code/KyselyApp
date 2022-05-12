@@ -50,10 +50,16 @@ public class QuestionController {
 		if (QuestionType.hasOptions(newQuestion.getType())) {
 			// Amount of options to add is gotten from the request object
 			var optionCount = addQuestion.getOptionCount();
-			for (int i = 0; i < optionCount; i++) {
+			
+			if(optionCount == 0) {
 				var newOption = new Option(newQuestion, "");
 				optionRepository.save(newOption);
-			}		
+			} else {
+				for (int i = 0; i < optionCount; i++) {
+					var newOption = new Option(newQuestion, "");
+					optionRepository.save(newOption);
+				}	
+			}
 		}
 
 		
