@@ -19,15 +19,7 @@ function Results() {
         setResults([]);
         return;
       }
-      const questions = survey.questions;
-      const resultsObjects = questions.map(question => {
-        return{
-          id: question.id,
-          question: question.name,
-          answers: question.answers,
-        }
-      });
-      setResults(resultsObjects);
+      setResults(survey.questions);
 
     }, [survey])
 

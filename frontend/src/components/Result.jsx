@@ -6,8 +6,6 @@ function Result({ result }){
 
     const [showResults,  setShowResults] = useState(false);
 
-    const question = result.question;
-
     return (
         <div
             className="bg-sweet-brown 
@@ -21,7 +19,7 @@ function Result({ result }){
                 rounded-t"
             >
                 <h1 className="">
-                    {question}
+                    {result.name}
                 </h1>
             </div>
             <div className="bg-dk-byzantium text-center brightness-95 rounded-b w-full pb-2">
@@ -33,26 +31,29 @@ function Result({ result }){
                 />
                 {showResults && (
                     <div className="flex flex-col gap-4 pt-2 pl-6 justify-center items-start w-full">
-                        {result.answers.length > 0 && 
+                        {result.answers.length > 0
+                        ? 
+                        result.type == "Text"
+                        ?
                             result.answers.map(a => (
                             <div className="flex justify-start w-full">
                                 <p key={a.id+a.answer}>{a.answer}</p>
                                 <p 
-                                  className="flex justify-center items-center
-                                  mr-6 ml-auto 
-                                  bg-tea-green text-dk-byzantium
-                                  rounded-full 
-                                  w-8 h-8
-                                  select-none"
-                                  title="Amount of times answer was given"
+                                    className="flex justify-center items-center
+                                    mr-6 ml-auto 
+                                    bg-tea-green text-dk-byzantium
+                                    rounded-full 
+                                    w-8 h-8
+                                    select-none"
+                                    title="Amount of times answer was given"
                                 >
-                                  {a.count}
+                                    {a.count}
                                 </p>
                             </div>
-                            ))
-                        }
-                        {result.answers.length === 0 &&
-                            <p className="my-4 text-red-500">No answers</p>
+                        ))
+                        : ":("
+                        :
+                        <p className="my-4 text-red-500">No answers</p>
                         }
                     </div>
                 )}
