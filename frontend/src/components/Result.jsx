@@ -1,10 +1,23 @@
 import { useState } from "react";
 import Results from "../pages/Results";
+import RadioResult from "./RadioResult";
+import TextResult from "./TextResult";
 
 
 function Result({ result }){
 
     const [showResults,  setShowResults] = useState(false);
+
+    const renderByType = () => {
+        switch(result.type) {
+            case "Text":
+              return <TextResult result={result} />;
+            case "Radio":
+                return <RadioResult result={result} />;
+            default:
+              return 'foo';
+          }
+    }
 
     return (
         <div
@@ -30,32 +43,18 @@ function Result({ result }){
                     onClick={() => setShowResults(!showResults)}
                 />
                 {showResults && (
-                    <div className="flex flex-col gap-4 pt-2 pl-6 justify-center items-start w-full">
+                    <span>
                         {result.answers.length > 0
-                        ? 
-                        result.type == "Text"
                         ?
-                            result.answers.map(a => (
-                            <div className="flex justify-start w-full">
-                                <p key={a.id+a.answer}>{a.answer}</p>
-                                <p 
-                                    className="flex justify-center items-center
-                                    mr-6 ml-auto 
-                                    bg-tea-green text-dk-byzantium
-                                    rounded-full 
-                                    w-8 h-8
-                                    select-none"
-                                    title="Amount of times answer was given"
-                                >
-                                    {a.count}
-                                </p>
-                            </div>
-                        ))
-                        : ":("
+                        renderByType()
+                        /* result.type == "Text"
+                        ?
+                            <TextResult result={result} />
+                        : ":(" */
                         :
                         <p className="my-4 text-red-500">No answers</p>
                         }
-                    </div>
+                    </span>
                 )}
             </div>
         </div>
