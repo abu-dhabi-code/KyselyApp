@@ -32,6 +32,15 @@
     transition-all
   }
 
+  .btn-icon-white {
+    @apply bg-error p-2 rounded-full
+    hover:filter hover:brightness-75
+    hover:shadow-sm
+    active:filter active:brightness-200
+    active:shadow-lg
+    transition-all
+  }
+
   .textbox-saved{
     @apply bg-success px-3 py-1 rounded
     w-[19rem]

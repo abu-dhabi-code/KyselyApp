@@ -14,7 +14,7 @@ module.exports = {
         'tea-green': '#93d08b',
         'lt-yellow': '#F8FFE5',
         'teal-blue': '#537D8D',
-        'error': '#F24242',
+        'error': '#F02850',
         'warn': '#DF5018',
         'success': '#74D234'
       }
