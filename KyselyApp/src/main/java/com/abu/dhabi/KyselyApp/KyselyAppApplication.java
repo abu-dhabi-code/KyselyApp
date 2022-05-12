@@ -62,7 +62,7 @@ public class KyselyAppApplication {
 			Option option6 = new Option(question2, "Muutaman kerran viikossa");
 			Option option7 = new Option(question2, "Kerran viikossa");
 			Option option8 = new Option(question2, "En koskaan");
-			Option option9 = new Option(question3, "Joka päivä");
+			Option option9 = new Option(question3, "Aina kun sitä on tarjolla");
 			Option option10 = new Option(question3, "Muutaman kerran viikossa");
 			Option option11 = new Option(question3, "Kerran viikossa");
 			Option option12 = new Option(question3, "En koskaan");
