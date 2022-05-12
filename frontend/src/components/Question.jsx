@@ -72,8 +72,7 @@ function Question({ question, key, answerState }) {
         return (
           <div className="flex flex-col gap-4 w-full">
             {question.options.map(o => (
-              <label>
-                {o.option}
+              <span className="textbox-width flex">
                 <input
                   name={question.id + question.question}
                   key={o.id + o.option}
@@ -82,16 +81,16 @@ function Question({ question, key, answerState }) {
 
                   onChange={e => updateAnswerByQuestionId(o.option)}
                 />
-              </label>
+                {o.option}
+              </span>
             ))}
           </div>
         )
       case "Multiselect":
         return (
-          <div className="flex flex-col gap-4 w-full">
+          <div className="flex flex-col gap-4 w-full py-2">
             {question.options.map(o => (
-              <label>
-                {o.option}
+              <span className="textbox-width flex">
                 <input
                   name={question.id + question.question}
                   key={o.id + o.option}
@@ -101,7 +100,8 @@ function Question({ question, key, answerState }) {
                   checked={isCheckboxValueInAnswers(o.option)}
                   onChange={e => updateAnswerByQuestionId(o.option)}
                 />
-              </label>
+                {o.option}
+              </span>
             ))}
           </div>
         )
