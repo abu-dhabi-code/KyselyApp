@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Results from "../pages/Results";
-import RadioResult from "./RadioResult";
-import TextResult from "./TextResult";
+//import RadioResult from "./RadioResult";
+//import TextResult from "./TextResult";
 
 
 function Result({ result }){
@@ -13,9 +13,9 @@ function Result({ result }){
             case "Text":
               return <TextResult result={result} />;
             case "Radio":
-                return <RadioResult result={result} />;
+                return <span>foo</span>
             default:
-              return 'foo';
+              return <span>foo</span>;
           }
     }
 
