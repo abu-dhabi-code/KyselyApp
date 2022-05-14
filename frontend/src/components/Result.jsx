@@ -1,7 +1,6 @@
 import { useState } from "react";
-import Results from "../pages/Results";
-//import RadioResult from "./RadioResult";
-//import TextResult from "./TextResult";
+import RadioResult from "./RadioResult";
+import TextResult from "./TextResult";
 
 
 function Result({ result }){
@@ -13,7 +12,7 @@ function Result({ result }){
             case "Text":
               return <TextResult result={result} />;
             case "Radio":
-                return <span>foo</span>
+                return <RadioResult answerObjects={result.answers} />;
             default:
               return <span>foo</span>;
           }
@@ -47,10 +46,6 @@ function Result({ result }){
                         {result.answers.length > 0
                         ?
                         renderByType()
-                        /* result.type == "Text"
-                        ?
-                            <TextResult result={result} />
-                        : ":(" */
                         :
                         <p className="my-4 text-red-500">No answers</p>
                         }
