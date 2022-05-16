@@ -1,5 +1,6 @@
 import { useState } from "react";
 import RadioResult from "./RadioResult";
+import MultiselectResult from "./MultiselectResult";
 import TextResult from "./TextResult";
 
 
@@ -13,6 +14,8 @@ function Result({ result }){
               return <TextResult result={result} />;
             case "Radio":
                 return <RadioResult answerObjects={result.answers} />;
+            /* case "Multiselect":
+                return <MultiselectResult answerObjects={result.answers} />; */
             default:
               return <span>foo</span>;
           }
