@@ -35,7 +35,7 @@ function Question({ question, key, answerState }) {
             values.splice(idx, 1);
           else
             values.push(newValue);
-            
+
         } else {
           a.value = [newValue];
         }
@@ -58,7 +58,7 @@ function Question({ question, key, answerState }) {
 
   function isCheckboxValueInAnswers(option) {
     const a = answers.find(a => a.id === question.id);
-    if(!a)
+    if (!a)
       return false;
 
     if (a.value.length) {
@@ -67,6 +67,11 @@ function Question({ question, key, answerState }) {
     return false;
   }
 
+  /**
+   * Used for fetching a survey by id.
+   * @param {import("../utils/api").Question} question - Question to display.
+   * @returns {JSX.Element}
+  */
   function getAnswerComponent(question) {
     console.log(question.type)
     switch (question.type) {
@@ -85,7 +90,7 @@ function Question({ question, key, answerState }) {
             {question.options.map(o => (
               <span className="textbox-width flex">
                 <input
-                  name={question.id + question.question}
+                  name={question.id + question.name}
                   key={o.id + o.option}
                   type="radio"
                   className="bg-white text-black px-2 mx-5 rounded"
@@ -103,7 +108,7 @@ function Question({ question, key, answerState }) {
             {question.options.map(o => (
               <span className="textbox-width flex">
                 <input
-                  name={question.id + question.question}
+                  name={question.id + question.name}
                   key={o.id + o.option}
                   type="checkbox"
                   className="bg-white text-black px-2 mx-5 rounded"

@@ -23,10 +23,9 @@ function Home() {
       <div className="flex flex-col items-stretch gap-4 justify-evenly">
         {surveys &&
           (surveys.map(s => (
-            <div className="flex gap-4 justify-start w-full">
+            <div className="flex gap-4 justify-start w-full" key={s.id}>
               <Link
                 title={s.description}
-                key={s.id}
                 className="btn-primary min-w-full text-center"
                 to={`/survey/${s.id}`}>
                 To survey #{s.id} - {s.surveyName}

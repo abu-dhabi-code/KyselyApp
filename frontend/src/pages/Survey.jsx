@@ -107,7 +107,7 @@ function Survey() {
       <h1 className="text-2xl my-2">{survey?.surveyName}</h1>
       <p>{survey?.description}</p>
       <div className="mt-2">
-        {!showSuccess || !showError &&
+        {!showSuccess && !showError &&
           (survey
             ?
             <div className="flex flex-col items-center">
