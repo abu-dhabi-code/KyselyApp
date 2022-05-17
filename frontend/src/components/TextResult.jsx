@@ -1,28 +1,28 @@
 import { useState } from "react";
 
-function TextResult({ result }){
+function TextResult({ result }) {
 
 
-    return(
-        <div className="flex flex-col gap-4 pt-2 pl-6 justify-center items-start w-full">
-        {result.answers.map(a => (
-            <div className="flex justify-start w-full">
-                <p key={a.id+a.answer}>{a.answer}</p>
-                <p 
-                    className="flex justify-center items-center
+  return (
+    <div className="flex flex-col gap-4 pt-2 pl-6 justify-center items-start w-full">
+      {result.answers.map(a => (
+        <div className="flex justify-start w-full">
+          <p key={a.id + a.answer}>{a.answer}</p>
+          <p
+            className="flex justify-center items-center
                     mr-6 ml-auto 
                     bg-tea-green text-dk-byzantium
                     rounded-full 
                     w-8 h-8
                     select-none"
-                    title="Amount of times answer was given"
-                >
-                    {a.count}
-                </p>
-            </div>
-        ))}
+            title="Amount of times answer was given"
+          >
+            {a.count}
+          </p>
         </div>
-    )
+      ))}
+    </div>
+  )
 }
 
 export default TextResult;
