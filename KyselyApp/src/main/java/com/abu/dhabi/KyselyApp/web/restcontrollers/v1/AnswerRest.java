@@ -43,8 +43,10 @@ public class AnswerRest {
     public @ResponseBody List<Answer> 
 	saveAnswerRest(@RequestBody List<Answer> answers) {
 		var savedAnswers = new ArrayList<Answer>(answers.size());
-		for (var answer : answers)
-			savedAnswers.add(arepository.save(answer));
+		for (var answer : answers) {
+			if (answer != null && !answer.getAnswer().isEmpty())
+				savedAnswers.add(arepository.save(answer));
+		}
 		return savedAnswers;
     }
 }
