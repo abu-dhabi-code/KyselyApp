@@ -3,12 +3,12 @@ import { Chart } from "react-google-charts";
 
 function MultiselectResult({ answerObjects }) {
 
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
 
   const options = {
     backgroundColor: "#482C3D",
     width: "100%",
-    height: "100%",
+    height: 60 * data.length,
     /* bar: { groupWidth: "95%" }, */
     hAxis: {
       textStyle: {color: 'white'},
@@ -18,6 +18,12 @@ function MultiselectResult({ answerObjects }) {
     },
     vAxis: {
       textStyle: {color: 'white'},
+    },
+    chartArea: {
+      top: 20,
+      /* left: '30%',
+      width: '70%', */
+      bottom: 50
     },
     legend: "none"
   };
@@ -31,7 +37,7 @@ function MultiselectResult({ answerObjects }) {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4 pt-2 pl-6 justify-center items-start w-full">
+    <div className="flex flex-col gap-4 pl-6 justify-center items-start w-full">
       <Chart
         chartType="BarChart"
         data={data}
