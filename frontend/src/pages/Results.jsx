@@ -61,7 +61,7 @@ function Results() {
         </div>
         <div className="flex flex-col items-center pb-8">
           {results.map(r => (
-            <div key={r.id + r.question} className="flex gap-4 justify-center w-full">
+            <div key={r.id + r.name} className="flex gap-4 justify-center w-full">
               <Result
                 result={r}
               />
