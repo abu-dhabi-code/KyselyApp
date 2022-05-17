@@ -58,9 +58,9 @@
 				<input type="hidden" th:field="*{questions[__${stat.index}__].id}" readonly="readonly" />
 				<input type="hidden" th:field="*{questions[__${stat.index}__].survey.id}" readonly="readonly" />
 				<input type="hidden" th:field="*{questions[__${stat.index}__].type}" readonly="readonly" />
-				<div class="flex gap-2">
+				<div class="flex gap-0 sm:gap-2">
 					<input 
-						class="bg-white text-black px-2 py-1 mx-5 rounded textbox-width"
+						class="bg-white text-black px-2 py-1 ml-0 mr-2 sm:ml-5 sm:mr-5 rounded textbox-width"
 						type="text"
 						placeholder="Question" 
 						th:field="*{questions[__${stat.index}__].name}" 
