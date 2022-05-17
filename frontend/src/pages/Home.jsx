@@ -20,6 +20,7 @@ function Home() {
   return (
     <div className="flex flex-col items-center h-full">
       <h1 className="text-3xl mt-3 mb-6">Home</h1>
+      <a href="/addsurvey" className="btn-primary mb-8">Create survey</a>
       <div className="flex flex-col items-stretch gap-4 justify-evenly">
         {surveys &&
           (surveys.map(s => (

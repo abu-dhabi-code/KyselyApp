@@ -10,7 +10,6 @@ function App() {
   return (
     <div className="flex flex-col items-center h-full">
       <div className="bg-teal-blue w-full text-center flex flex-row items-center justify-center">
-        <span className="ml-4 mr-auto w-28"></span>
         <span className="flex justify-center items-center gap-4">
           <img src={Logo} alt="KyselyApp logo" className="h-8" />
           <Link
@@ -20,7 +19,6 @@ function App() {
           </Link>
           <img src={Logo} alt="KyselyApp logo" className="h-8" />
         </span>
-        <a href="/addsurvey" className="btn-primary ml-auto mr-0 sm:mr-4">Create survey</a>
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
