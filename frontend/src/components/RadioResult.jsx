@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Chart } from "react-google-charts";
+import { colours } from "../utils/chartCommons";
 
 /**
  * 
@@ -11,11 +12,15 @@ function RadioResult({ answerObjects }) {
 
   const [data, setData] = useState();
 
+  /**
+   * @type import("react-google-charts").GoogleChartOptions
+   */
   const options = {
     backgroundColor: "#482C3D",
     width: "100%",
     height: 300,
-    legend: { textStyle: { color: 'white' } }
+    legend: { textStyle: { color: 'white' } },
+    colors: colours,
   };
 
   useEffect(() => {
