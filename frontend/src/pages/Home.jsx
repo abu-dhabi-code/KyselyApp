@@ -23,15 +23,23 @@ function Home() {
       <div className="flex flex-col items-stretch gap-4 justify-evenly">
         {surveys &&
           (surveys.map(s => (
-            <div className="flex gap-4 justify-start w-full" key={s.id}>
+            <div 
+              className="flex gap-4 justify-start w-full 
+                flex-col sm:flex-row
+                p-2 rounded
+                bg-slate-800" 
+              key={s.id}
+            >
               <Link
                 title={s.description}
                 className="btn-primary min-w-full text-center"
                 to={`/survey/${s.id}`}>
                 To survey #{s.id} - {s.surveyName}
               </Link>
-              <a className="btn-secondary ml-auto mr-0" href={`/editsurvey/${s.id}`}>Edit</a>
-              <Link className="btn-tertiary ml-auto mr-0" to={`/survey/${s.id}/answers`}>Results</Link>
+              <div className="flex gap-4 justify-evenly">
+                <a className="btn-secondary" href={`/editsurvey/${s.id}`}>Edit</a>
+                <Link className="btn-tertiary" to={`/survey/${s.id}/answers`}>Results</Link>
+              </div>
             </div>
           )))
         }
