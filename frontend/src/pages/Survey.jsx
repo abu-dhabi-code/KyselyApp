@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Question from "../components/Question";
 import Success from "../components/Success";
+import Failure from "../components/Failure";
 import { getSurvey, sendAnswers } from "../utils/api";
 
 function Survey() {
@@ -28,6 +29,8 @@ function Survey() {
    */
   const [answers, setAnswers] = useState([]);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorInfo, setErrorInfo] = useState({});
 
   console.log(id);
 
@@ -89,6 +92,13 @@ function Survey() {
       .then(res => {
         console.log(res)
         setShowSuccess(true);
+        setShowError(false);
+      })
+      .catch(e => {
+        console.log(e)
+        setShowSuccess(false);
+        setShowError(true);
+        setErrorInfo(e);
       })
   }
 
@@ -97,7 +107,7 @@ function Survey() {
       <h1 className="text-2xl my-2">{survey?.surveyName}</h1>
       <p>{survey?.description}</p>
       <div className="mt-2">
-        {!showSuccess &&
+        {!showSuccess || !showError &&
           (survey
             ?
             <div className="flex flex-col items-center">
@@ -121,6 +131,10 @@ function Survey() {
         {showSuccess &&
           <Success />
 
+        }
+
+        {showError &&
+          <Failure />
         }
       </div>
 
