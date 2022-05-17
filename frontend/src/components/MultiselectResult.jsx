@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { Chart } from "react-google-charts";
 
+/**
+ * 
+ * @param {{answerObjects: import("../utils/api").Answer[]}} answerObjects - list of answers
+ * @returns {JSX.Element}
+ */
 function MultiselectResult({ answerObjects }){
 
     const [data, setData] = useState();

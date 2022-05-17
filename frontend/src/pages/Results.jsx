@@ -6,7 +6,19 @@ import Result from "../components/Result";
 
 function Results() {
   const id = parseInt(useParams().id);
+  /**
+   * @type {[
+   *  import("../utils/api").SurveyWithAnswers, 
+   *  React.Dispatch<React.SetStateAction<import("../utils/api").SurveyWithAnswers>>
+   * ]}
+   */
   const [survey, setSurvey] = useState({});
+  /**
+   * @type {[
+   *  import("../utils/api").Question[], 
+   *  React.Dispatch<React.SetStateAction<import("../utils/api").Question[]>>
+   * ]}
+   */
   const [results, setResults] = useState([]);
 
   useEffect(() => {

@@ -1,10 +1,21 @@
 
-
+/**
+ * @param {{question: import("../utils/api").Question, key: string, answerState: useState<Answers>}} props - props
+ * @returns {JSX.Element}
+ */
 function Question({ question, key, answerState }) {
-
+  /**
+   * @type {[
+   *  import("../pages/Survey")InProgressAnswer[], 
+   *  React.Dispatch<React.SetStateAction<import("../pages/Survey")InProgressAnswer[]>>
+   * ]}
+   */
   const [answers, setAnswers] = answerState;
 
   function getAnswerByQuestionId() {
+    /**
+     * @type {import("../pages/Survey")InProgressAnswer[]}
+     */
     const results = answers.filter(a => a.id === question.id);
 
     return results.length > 0 ? results[0].value : '';

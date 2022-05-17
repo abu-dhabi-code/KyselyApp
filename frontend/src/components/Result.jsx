@@ -3,7 +3,11 @@ import RadioResult from "./RadioResult";
 import MultiselectResult from "./MultiselectResult";
 import TextResult from "./TextResult";
 
-
+/**
+ * 
+ * @param {{result: import("../utils/api").Question}} result - the question to display the results of
+ * @returns {JSX.Element}
+ */
 function Result({ result }) {
 
   const [showResults, setShowResults] = useState(false);

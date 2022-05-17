@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+/**
+ * 
+ * @param {{result: import("../utils/api").Question}} result - the question to display the results of
+ * @returns {JSX.Element}
+ */
 function TextResult({ result }) {
 
 

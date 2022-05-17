@@ -6,7 +6,26 @@ import { getSurvey, sendAnswers } from "../utils/api";
 
 function Survey() {
   const id = parseInt(useParams().id);
+  /**
+   * @type {[
+   *  import("../utils/api").Survey, 
+   *  React.Dispatch<React.SetStateAction<import("../utils/api").Survey>>
+   * ]}
+   */
   const [survey, setSurvey] = useState();
+  /**
+   * @typedef InProgressAnswer
+   * @type {object}
+   * @property {number} id - of the question
+   * @property {import("../utils/api").QuestionType} type - of question
+   * @property {(string | string[])} value - answers to the question
+   */
+  /**
+   * @type {[
+   *  InProgressAnswer[], 
+   *  React.Dispatch<React.SetStateAction<InProgressAnswer[]>>
+   * ]}
+   */
   const [answers, setAnswers] = useState([]);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -30,8 +49,18 @@ function Survey() {
       }));
   }, [survey]);
 
+  /**
+   * @typedef AnswerObject
+   * @type {object}
+   * @property {import("../utils/api").Question} - question the answer is linked to. Only the ID is required
+   * @property {string} answer - answer text
+   */
+
   function submitAnswers() {
     console.log(answers);
+    /**
+     * @type {AnswerObject[]}
+     */
     const answerObjects = answers
       .filter(e => e.type !== "Multiselect")
       .map(e => {
@@ -43,6 +72,9 @@ function Survey() {
         }
       })
 
+    /**
+     * @type {InProgressAnswer[]}
+     */
     const multiAnswers = answers.filter(e => e.type === "Multiselect");
     for (const answer of multiAnswers)
       for (const option of answer.value)
