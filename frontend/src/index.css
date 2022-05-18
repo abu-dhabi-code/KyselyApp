@@ -4,53 +4,56 @@
 
 
 @layer components {
-  .btn-primary {
-    @apply bg-sweet-brown px-3 py-1 rounded 
+  .btn {
+    @apply px-3 py-1 rounded 
+    cursor-pointer
+    shadow-sm
     hover:filter hover:brightness-75
-    hover:shadow-sm
+    hover:shadow-md
+    hover:scale-95
     active:filter active:brightness-200
     active:shadow-lg
+    active:scale-90
     transition-all
+  }
+
+  .btn-primary {
+    @apply btn bg-sweet-brown
   }
 
   .btn-secondary {
-    @apply bg-teal-blue px-3 py-1 rounded 
-    hover:filter hover:brightness-75
-    hover:shadow-sm
-    active:filter active:brightness-200
-    active:shadow-lg
-    transition-all
+    @apply btn bg-teal-blue
   }
 
   .btn-tertiary {
-    @apply bg-tea-green px-3 py-1 rounded 
-    text-dk-byzantium
-    hover:filter hover:brightness-75
-    hover:shadow-sm
-    active:filter active:brightness-200
-    active:shadow-lg
-    transition-all
+    @apply btn bg-tea-green
   }
 
-  .btn-icon-white {
+  .btn-icon-error {
     @apply bg-error p-2 rounded-full
+    cursor-pointer
+    shadow-sm
     hover:filter hover:brightness-75
-    hover:shadow-sm
+    hover:shadow-md
+    hover:scale-95
     active:filter active:brightness-200
     active:shadow-lg
+    active:scale-90
     transition-all
   }
 
-  .textbox-saved{
-    @apply bg-success px-3 py-1 rounded
+  .toast-base {
+    @apply px-3 py-1 rounded
     w-[19rem]
     flex justify-center items-center text-center
   }
 
-  .textbox-error{
-    @apply bg-warn px-3 py-1 rounded
-    w-[19rem]
-    flex justify-center items-center text-center
+  .toast-saved{
+    @apply toast-base bg-success
+  }
+
+  .toast-error{
+    @apply toast-base bg-warn
   }
 
   .textbox-width {

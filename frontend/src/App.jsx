@@ -9,8 +9,12 @@ function App() {
 
   return (
     <div className="flex flex-col items-center h-full">
-      <div className="bg-teal-blue w-full text-center flex flex-row items-center justify-center">
-        <span className="flex justify-center items-center gap-4">
+      <div 
+        className="bg-teal-blue w-full text-center 
+          flex flex-row items-center justify-center
+          shadow-lg"
+        >
+        <span className="flex justify-center items-center gap-4 shadow-sm">
           <img src={Logo} alt="KyselyApp logo" className="h-8" />
           <Link
             className="text-3xl mt-2 mb-2"
