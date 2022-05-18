@@ -47,7 +47,7 @@ public class KyselyAppApplication {
 			//Question question66 = new Question(survey1, "?", QuestionType.Type.Multiselect);
 			Question question7 = new Question(survey1, "Miten hyvin ravintolassa on huomioitu eri ruokavaliot ja allergiat?", QuestionType.Type.Radio);
 			Question question8 = new Question(survey1, "Mistä syistä vierailet ravintola Pääraiteessa?", QuestionType.Type.Multiselect);
-			// Question question8 = new Question(survey1, "Kuinka usein ostat lounaan yhteydessä myös jälkiruoan?", QuestionType.Text);
+			Question question9 = new Question(survey1, "Kerro vapaasti palautetta ravintolan toiminnasta :)", QuestionType.Type.LongText);
 			
 			Question animalQ1 = new Question(survey2, "Are you a frog?", QuestionType.Type.Text);
 			Question animalQ2 = new Question(survey2, "Are you a dog?", QuestionType.Type.Text);
@@ -110,6 +110,7 @@ public class KyselyAppApplication {
 			//qrepository.save(question66);
 			qrepository.save(question7);
 			qrepository.save(question8);
+			qrepository.save(question9);
 			qrepository.save(animalQ1);
 			qrepository.save(animalQ2);
 			qrepository.save(animalQ3);
@@ -224,6 +225,9 @@ public class KyselyAppApplication {
 			Answer answer69 = new Answer(question8, option29.getOption());
 			Answer answer70 = new Answer(question8, option27.getOption());
 			Answer answer71 = new Answer(question8, option30.getOption());
+			Answer answer72 = new Answer(question9, "Ei moitittavaa :)");
+			Answer answer73 = new Answer(question9, "Ei moitittavaa :)");
+			Answer answer74 = new Answer(question9, "Vesihana voisi olla nopeampi");
 			
 			// Tallennetaan radiokysymysten vastaukset
 			
@@ -288,6 +292,9 @@ public class KyselyAppApplication {
 			arepository.save(answer69);
 			arepository.save(answer70);
 			arepository.save(answer71);
+			arepository.save(answer72);
+			arepository.save(answer73);
+			arepository.save(answer74);
 			
 			
 			log.info("fetch all surveys");
