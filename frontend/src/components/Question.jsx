@@ -79,16 +79,16 @@ function Question({ question, key, answerState }) {
         return (
           <textarea
             placeholder="Answer"
-            className="bg-white text-black px-2 mx-5 rounded textbox-width"
+            className="bg-white text-black px-2 mx-5 rounded"
             value={getAnswerByQuestionId(question.id)}
             onChange={e => updateAnswerByQuestionId(e.currentTarget.value)}
           />
         )
       case "Radio":
         return (
-          <div className="flex flex-col gap-4 w-full">
+          <div className="flex flex-col gap-4 w-11/12">
             {question.options.map(o => (
-              <span className="textbox-width flex">
+              <span className="textbox-width flex pr-3 text-left">
                 <input
                   name={question.id + question.name}
                   key={o.id + o.option}
@@ -106,7 +106,7 @@ function Question({ question, key, answerState }) {
         return (
           <div className="flex flex-col gap-4 w-full py-2">
             {question.options.map(o => (
-              <span className="textbox-width flex">
+              <span className="textbox-width flex pr-3 text-left">
                 <input
                   name={question.id + question.name}
                   key={o.id + o.option}
@@ -126,7 +126,7 @@ function Question({ question, key, answerState }) {
           <input
             type="text"
             placeholder="Answer"
-            className="bg-white text-black px-2 mx-5 rounded textbox-width"
+            className="bg-white text-black px-2 mx-5 rounded w-11/12"
             value={getAnswerByQuestionId(question.id)}
             onChange={e => updateAnswerByQuestionId(e.currentTarget.value)}
           />
@@ -138,8 +138,9 @@ function Question({ question, key, answerState }) {
     <div
       key={key}
       className="bg-sweet-brown 
+                textbox-width
                 m-3
-                px-1 py-1 rounded shadow-sm
+                px-1 py-1 rounded shadow-lg
                 flex flex-col items-center"
     >
       <div
@@ -151,7 +152,10 @@ function Question({ question, key, answerState }) {
           {question.name}
         </h1>
       </div>
-      <div className="bg-dk-byzantium text-center brightness-95 rounded-b w-full pb-2">
+      <div 
+        className="text-center bg-dk-byzantium bg-opacity-75
+          rounded-b w-full py-2"
+        >
         {
           getAnswerComponent(question)
         }

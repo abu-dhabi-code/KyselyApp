@@ -4,6 +4,7 @@ import Question from "../components/Question";
 import Success from "../components/Success";
 import Failure from "../components/Failure";
 import { getSurvey, sendAnswers } from "../utils/api";
+import SurveyInfo from "../components/SurveyInfo";
 
 function Survey() {
   const id = parseInt(useParams().id);
@@ -104,8 +105,9 @@ function Survey() {
 
   return (
     <div className="flex flex-col items-center h-full">
-      <h1 className="text-2xl my-2">{survey?.surveyName}</h1>
-      <p>{survey?.description}</p>
+      <span className="mt-4">
+        <SurveyInfo survey={survey} />
+      </span >
       <div className="mt-2">
         {!showSuccess && !showError &&
           (survey
