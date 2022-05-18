@@ -53,6 +53,7 @@
 		>
 			<input type="hidden" th:field="*{id}" readonly="readonly" />
 			<input type="hidden" th:field="*{surveyName}" readonly="readonly"/>
+			<input type="hidden" th:field="*{description}" readonly="readonly"/>
 			<div th:each="question, stat : *{questions}">
 				<h2 th:text="${stat.index + 1}"></h2>
 				<input type="hidden" th:field="*{questions[__${stat.index}__].id}" readonly="readonly" />
