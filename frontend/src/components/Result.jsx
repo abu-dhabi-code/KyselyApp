@@ -14,14 +14,12 @@ function Result({ result }) {
 
   const renderByType = () => {
     switch (result.type) {
-      case "Text":
-        return <TextResult result={result} />;
       case "Radio":
         return <RadioResult answerObjects={result.answers} />;
       case "Multiselect":
           return <MultiselectResult answerObjects={result.answers} />;
       default:
-        return <span>foo</span>;
+        return <TextResult result={result} />;
     }
   }
 
