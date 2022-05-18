@@ -1,9 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+@font-face {
+  font-family: Metropolis;
+  src: url('./mazeletter-metropolis.woff2');
+}
+
+@font-face {
+  font-family: Boxwood;
+  src: url('./mazeletter-boxwood.woff2');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
 @layer components {
+  .main-bg-pattern {
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='50' height='50' viewBox='0 0 40 40' patternUnits='userSpaceOnUse' patternTransform=''%3E%3Crect width='100%25' height='100%25' fill='rgba(255, 236, 153,0)'/%3E%3Cpath d='M20 5a 20 20 0 0 1 40 0h10a 10 10 0 0 1-20 0a 10 10 0 0 0-20 0a 10 10 0 0 1-20 0a 10 10 0 0 0-20 0h-10a 20 20 0 0 1 40 0z' fill='rgba(66, 41, 56,1)'/%3E%3Cpath d='M0 25a 20 20 0 0 1 40 0h10a 10 10 0 0 1-20 0a 10 10 0 0 0-20 0a 10 10 0 0 1-20 0z' fill='rgba(64, 43, 54,1)'/%3E%3Cpath d='M20 45a 20 20 0 0 1 40 0h10a 10 10 0 0 1-20 0a 10 10 0 0 0-20 0a 10 10 0 0 1-20 0a 10 10 0 0 0-20 0h-10a 20 20 0 0 1 40 0z' fill='rgba(66, 41, 56,1)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E ")
+  }
+
   .btn {
     @apply px-3 py-1 rounded 
     cursor-pointer

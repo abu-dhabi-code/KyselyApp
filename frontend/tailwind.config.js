@@ -1,3 +1,4 @@
+
 module.exports = {
   mode: 'jit',
   content: [
@@ -8,6 +9,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'poppins': 'Poppins, sans-serif',
+        'metro': 'Metropolis',
+        'box': 'Boxwood'
+      },
       colors: {
         'dk-byzantium': '#482C3D',
         'sweet-brown': '#AC3931',

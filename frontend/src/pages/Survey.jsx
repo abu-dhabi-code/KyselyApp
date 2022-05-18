@@ -140,7 +140,7 @@ function Survey() {
         }
       </div>
 
-      <Link className="btn-primary mt-auto mb-4" to="/">Go back home</Link>
+      <Link className="btn-secondary mt-auto mb-4" to="/">Go back home</Link>
     </div>
   )
 }
