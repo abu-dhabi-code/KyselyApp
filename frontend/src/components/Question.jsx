@@ -79,7 +79,7 @@ function Question({ question, key, answerState }) {
         return (
           <textarea
             placeholder="Answer"
-            className="bg-white text-black px-2 mx-5 rounded"
+            className="bg-white text-black px-2 mx-5 rounded w-10/12 sm:w-11/12"
             value={getAnswerByQuestionId(question.id)}
             onChange={e => updateAnswerByQuestionId(e.currentTarget.value)}
           />
@@ -126,7 +126,7 @@ function Question({ question, key, answerState }) {
           <input
             type="text"
             placeholder="Answer"
-            className="bg-white text-black px-2 mx-5 rounded w-11/12"
+            className="bg-white text-black px-2 mx-5 rounded w-10/12 sm:w-11/12"
             value={getAnswerByQuestionId(question.id)}
             onChange={e => updateAnswerByQuestionId(e.currentTarget.value)}
           />
